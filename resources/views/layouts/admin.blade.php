@@ -3,18 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | @yield('title')</title>
+  <title>Trang Quản Trị | @yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{url('')}}/public/admin/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{url('')}}/public/admin/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{url('')}}/public/admin/css/AdminLTE.css">
-  <link rel="stylesheet" href="{{url('')}}/public/admin/css/_all-skins.min.css">
-  <link rel="stylesheet" href="{{url('')}}/public/admin/css/jquery-ui.css">
-  <link rel="stylesheet" href="{{url('')}}/public/admin/css/style.css" />
-  <script src="{{url('')}}/public/admin/js/angular.min.js"></script>
-  <script src="{{url('')}}/public/admin/js/app.js"></script>
+  <link rel="stylesheet" href="{{url('public/ad')}}/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{url('public/ad')}}/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{url('public/ad')}}/css/AdminLTE.css">
+  <link rel="stylesheet" href="{{url('public/ad')}}/css/_all-skins.min.css">
+  <link rel="stylesheet" href="{{url('public/ad')}}/css/jquery-ui.css">
+  <link rel="stylesheet" href="{{url('public/ad')}}/css/style.css" />
+  <script src="{{url('public/ad')}}/js/angular.min.js"></script>
+  <script src="{{url('public/ad')}}/js/app.js"></script>
+  <script type="text/javascript">
+    function base_url(){
+      return "{{url('')}}";
+    }
+  </script>
+  <script type="text/javascript">
+    function akey(){
+      return "{{url('')}}";
+    }
+  </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -49,13 +59,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="" class="user-image" alt="User Image">
               <span class="hidden-xs"> {{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="" class="img-circle" alt="User Image">
 
                 <p>
                   {{Auth::user()->name}}
@@ -103,7 +113,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{Auth::user()->name}}</p>
@@ -123,6 +133,14 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
+        <li>
+          <a href="{{route('admin')}}">
+            <i class="fa fa-th"></i> <span>Trang Chủ Quản Trị</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">Hot</small>
+            </span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span> QL-Category</span>
@@ -142,7 +160,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
+            <li><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -164,18 +182,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
+            <li><a href="{{route('banner.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
           </ul>
         </li>
         
-        <li>
-          <a href="">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
-            </span>
-          </a>
-        </li>
+        
         
       </ul>
     </section>
@@ -226,13 +237,14 @@
 
 <!-- jQuery 3 -->
 
-<script src="{{url('')}}/public/admin/js/jquery.min.js"></script>
-<script src="{{url('')}}/public/admin/js/jquery-ui.js"></script>
-<script src="{{url('')}}/public/admin/js/bootstrap.min.js"></script>
-<script src="{{url('')}}/public/admin/js/adminlte.min.js"></script>
-<script src="{{url('')}}/public/admin/js/dashboard.js"></script>
-<script src="{{url('')}}/public/admin/tinymce/tinymce.min.js"></script>
-<script src="{{url('')}}/public/admin/tinymce/config.js"></script>
-<script src="{{url('')}}/public/admin/js/function.js"></script>
+<script src="{{url('public/ad')}}/js/jquery.min.js"></script>
+<script src="{{url('public/ad')}}/js/jquery-ui.js"></script>
+<script src="{{url('public/ad')}}/js/bootstrap.min.js"></script>
+<script src="{{url('public/ad')}}/js/adminlte.min.js"></script>
+<script src="{{url('public/ad')}}/js/dashboard.js"></script>
+<script src="{{url('public/ad')}}/tinymce/tinymce.min.js"></script>
+<script src="{{url('public/ad')}}/tinymce/config.js"></script>
+<script src="{{url('public/ad')}}/js/function.js"></script>
+   @yield('js')
 </body>
 </html>

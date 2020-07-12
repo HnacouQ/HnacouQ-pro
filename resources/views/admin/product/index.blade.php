@@ -19,7 +19,9 @@
 		<thead>
 			<tr>
 				<th>STT</th>
+				<th>Ảnh sản phẩm</th>
 				<th>Tên sản phẩm</th>
+				
 				<th>trạng thái</th>
 				<th>ngày tạo</th>
 				<th>Tùy Chọn</th>
@@ -29,7 +31,9 @@
 			@foreach($data as $pro)
 			<tr>
 				<td>{{$pro->id}}</td>
+				<td><img src="{{url('public/uploads/product')}}/{{$pro->image}}" alt="" width="60"></td>
 				<td>{{$pro->name}}</td>
+				
 				<td>{{$pro->status}}</td>
 				<td>{{$pro->created_at}}</td>
 				<td>

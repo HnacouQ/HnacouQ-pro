@@ -8,23 +8,32 @@
 		<label for="">Tên Danh Mục</label>
 		<input type="text" class="form-control" name="name" id="name" >
 	</div>
+	@if($errors->has('name'))
+		{{$errors->first('name')}}
+		@endif
 	<div class="form-group">
 		<label for="">Slug</label>
 		<input type="text" class="form-control" name="slug" id="slug" >
 	</div>
+	@if($errors->has('slug'))
+		{{$errors->first('slug')}}
+		@endif
 	<div class="form-group">
 		<label for="">Status</label>
 		<div class="radio">
 			<label>
 				<input type="radio" name="status" id="input" value="1" checked="checked">
-				publish
+				Hiện
 			</label>
 			<label>
 				<input type="radio" name="status" id="input" value="0">
-				un publish
+				Ẩn
 			</label>
 		</div>
 	</div>
 	<button type="submit" class="btn btn-primary">ADD</button>
 </form>
+@stop()
+@section('js')
+<script src="{{url('public/ad')}}/js/slug.js"></script>
 @stop()
