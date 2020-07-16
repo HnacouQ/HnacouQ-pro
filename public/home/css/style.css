@@ -224,11 +224,14 @@
 	border-radius: 0;
 	position: relative;
 	border: none;
+
 }
+
 
  .pro-item .my-pro:hover{
 	box-shadow: 1px 1px 25px 1px #ccc;
-	transition: 0.5s all;
+	transition: 1s all;
+	
 }
 
  .pro-item .pro-effect{

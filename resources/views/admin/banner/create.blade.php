@@ -14,25 +14,11 @@
 			{{$errors->first('name')}}
 			@endif
 			<div class="form-group">
-				<label for="">link banner</label>
-				<input type="text" name="link" class="form-control" id="slug">
+				<label for="">Loại Banner</label>
+				<input type="number" name="type" class="form-control">
 			</div>
-			@if($errors->has('link'))
-			{{$errors->first('link')}}
-			@endif
-			<div class="form-group">
-				<label for="">ordering banner</label>
-				<input type="text" name="ordering" class="form-control" id="slug">
-			</div>
-			@if($errors->has('ordering'))
-			{{$errors->first('ordering')}}
-			@endif
-			<div class="form-group">
-				<label for="">Mô tả banner</label>
-				<textarea name="content" id="input" class="form-control" rows="3"></textarea>
-			</div>
-			@if($errors->has('content'))
-			{{$errors->first('content')}}
+			@if($errors->has('type'))
+			{{$errors->first('type')}}
 			@endif
 			<div class="form-group">
 				<label for="">Ảnh</label>

@@ -29,7 +29,7 @@ class BannerController extends Controller
     public function create()
     {
         //
-         $cats = Category::orderBy('name','ASC')->get();
+         $cats = Banner::orderBy('id','ASC')->get();
         return view('admin.banner.create');
     }
 
@@ -47,16 +47,16 @@ class BannerController extends Controller
         if ($request->has('upload')) {
             # code...
             $img_name = time().'-'.$request->upload->getClientOriginalName();
-            $request->upload->move(public_path('uploads/product'),$img_name);
+            $request->upload->move(public_path('uploads/banner'),$img_name);
             $request->merge(['image' =>  $img_name]);
         }
     
 
         //lưu vào db
 
-         $add = Product::create($request->all());
+         $add = Banner::create($request->all());
          if($add){
-            return redirect()->route('product.index')->with('success','thêm mới sản phẩm thành công!!!!');
+            return redirect()->route('banner.index')->with('success','thêm mới sản phẩm thành công!!!!');
          }
          else{
             return redirect()->back();
@@ -80,9 +80,13 @@ class BannerController extends Controller
      * @param  \App\models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
         //
+        $data = Banner::find($id);
+
+        return view('admin.banner.edit',compact('data'));
+
     }
 
     /**
@@ -92,9 +96,29 @@ class BannerController extends Controller
      * @param  \App\models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, $id)
     {
         //
+        $data = Banner::find($id);
+        $request -> offsetUnset('_token');
+        $request -> offsetUnset('_method');
+         
+
+        if ($request->has('upload')) {
+            # code...
+            $img_name = time().'-'.$request->upload->getClientOriginalName();
+            $request->upload->move(public_path('uploads/banner'),$img_name);
+            $request->merge(['image' =>  $img_name]);
+        }
+
+      
+
+        Banner::where(['id'=>$id])->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'image' => $request->image
+        ]);
+        return redirect()->route('banner.index')->with('success','Dữ liệu Được Sửa Thành Công!!');
     }
 
     /**
@@ -103,8 +127,12 @@ class BannerController extends Controller
      * @param  \App\models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
         //
+        Banner::find($id)->delete();
+
+        return redirect()->back()->with('success','Xóa Thành Công');
+
     }
 }

@@ -6,8 +6,8 @@
 				<label class="sr-only" for="">label</label>
 				<input type="email" class="form-control" id="" placeholder="Search....">
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-			<span><a href="{{route('banner.create')}}" class="btn btn-primary  ">ADD</a></span>
+			<button type="submit" class="btn btn-primary">Search</button>
+			<span><a href="{{route('banner.create')}}" class="btn btn-primary glyphicon glyphicon-plus "></a></span>
 		</form>
 	<table class="table table-hover">
 		@if(Session::has('success'))
@@ -20,6 +20,8 @@
 			<tr>
 				<th>STT</th>
 				<th>Tên banner</th>
+				<th>Loại banner</th>
+				<th>created-at</th>
 				<th>Tùy Chọn</th>
 			</tr>
 		</thead>
@@ -28,14 +30,16 @@
 			<tr>
 				<td>{{$ban->id}}</td>
 				<td>{{$ban->name}}</td>
+				<td>{{$ban->type}}</td>
 				<td>{{$ban->created_at}}</td>
 				<td>
 
 					<form action="{{ route('banner.destroy', $ban->id) }}" method="POST">
 						@csrf
 						<input type="hidden" name="_method" value="DELETE">
-					<a href="{{route('banner.edit',$ban->id)}}" class="btn btn-primary">Edit</a>
-					<button type="submit" class="btn btn-danger" onclick="return confirm('ban chac chua?')">Delete</button>
+					<a href="{{route('banner.edit',$ban->id)}}" class="btn btn-primary glyphicon glyphicon-pencil"></a>
+					<button type="submit" class="btn btn-danger glyphicon glyphicon-trash" onclick="return confirm('Bạn đã chắc chắn chưa?')"></button>
+					<a href="{{route('banner.show',$ban->id)}}" class="btn btn-primary glyphicon glyphicon-eye-open"></a>
 					</form>
 				</td>
 			</tr>

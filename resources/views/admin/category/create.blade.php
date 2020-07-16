@@ -19,6 +19,15 @@
 		{{$errors->first('slug')}}
 		@endif
 	<div class="form-group">
+		<label for="">Parent Category</label>
+		<select name="parent_id" id="input" class="form-control" required="required">
+			<option value="0">Parent</option>
+			@foreach($category as $cats)
+			<option value="{{$cats->id}}">{{$cats->name}}</option>
+			@endforeach
+		</select>
+	</div>
+	<div class="form-group">
 		<label for="">Status</label>
 		<div class="radio">
 			<label>

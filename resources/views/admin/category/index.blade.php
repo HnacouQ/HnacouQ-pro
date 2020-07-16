@@ -7,7 +7,7 @@
 				<input type="email" class="form-control" id="" placeholder="Search....">
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
-			<span><a href="{{route('category.create')}}" class="btn btn-primary  ">ADD</a></span>
+			<span><a href="{{route('category.create')}}" class="btn btn-primary  glyphicon glyphicon-plus"></a></span>
 		</form>
 	<table class="table table-hover">
 		@if(Session::has('success'))
@@ -37,8 +37,9 @@
 					<form action="{{ route('category.destroy', $cat->id) }}" method="POST">
 						@csrf
 						<input type="hidden" name="_method" value="DELETE">
-					<a href="{{route('category.edit',$cat->id)}}" class="btn btn-primary">Edit</a>
-					<button type="submit" class="btn btn-danger" onclick="return confirm('ban chac chua?')">Delete</button>
+					<a href="{{route('category.edit',$cat->id)}}" class="btn btn-primary glyphicon glyphicon-pencil"></a>
+					<button type="submit" class="btn btn-danger glyphicon glyphicon-trash" onclick="return confirm('ban chac chua?')"></button>
+					<a href="{{route('category.show',$cat->id)}}" class="btn btn-primary glyphicon glyphicon-eye-open"></a>
 					</form>
 				</td>
 			</tr>

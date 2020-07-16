@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title','Trang Chủ')
 @section('content')
 <div class="jumbotron">
 	<div class="container">

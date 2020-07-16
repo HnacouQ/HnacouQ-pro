@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $data = Category::orderBy('id','DESC')->paginate(5);
        return view('admin.category.index',compact('data'));
-       
+
     }
 
     /**
@@ -30,10 +30,11 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        
-         return view('admin.category.create');
+        $category = Category::where('parent_id',0)->get();
 
-       
+         return view('admin.category.create',compact('category'));
+
+
     }
 
     /**
@@ -49,6 +50,7 @@ class CategoryController extends Controller
         $this->validate($request,[
             'name' => 'required|unique:category,name',
             'slug' => 'required|unique:category,slug',
+            
         ],[
             'name.required' => 'Tên danh mục không được để trống!!!',
             'name.unique' => 'danh mục đã tồn tại!!!',
@@ -63,7 +65,8 @@ class CategoryController extends Controller
         }else{
             return redirect()->route('category.index')->with('error','Thêm mới thất bại!!!');
         }
-        
+
+
 
     }
 
@@ -76,7 +79,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-       
+
          echo "đâsdasdád";
     }
 
@@ -116,7 +119,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
+    {
 
         $data = Category::find($id);
         $name = Category::find($id)->name;

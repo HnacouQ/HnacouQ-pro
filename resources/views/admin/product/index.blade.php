@@ -1,13 +1,14 @@
 @extends('layouts.admin')
-@section('title','Category')
+@section('title','Product')
 @section('content')
+
 <form action="" method="POST" class="form-inline" role="form">
 			<div class="form-group">
 				<label class="sr-only" for="">label</label>
 				<input type="email" class="form-control" id="" placeholder="Search....">
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-			<span><a href="{{route('product.create')}}" class="btn btn-primary  ">ADD</a></span>
+			<button type="submit" class="btn btn-primary">Search</button>
+			<span><a href="{{route('product.create')}}" class="btn btn-primary glyphicon glyphicon-plus "></a></span>
 		</form>
 	<table class="table table-hover">
 		@if(Session::has('success'))
@@ -41,9 +42,11 @@
 					<form action="{{ route('product.destroy', $pro->id) }}" method="POST">
 						@csrf
 						<input type="hidden" name="_method" value="DELETE">
-					<a href="{{route('product.edit',$pro->id)}}" class="btn btn-primary">Edit</a>
-					<button type="submit" class="btn btn-danger" onclick="return confirm('ban chac chua?')">Delete</button>
+					<a href="{{route('product.edit',$pro->id)}}" class="btn btn-primary 	glyphicon glyphicon-pencil"></a>
+					<button type="submit" class="btn btn-danger glyphicon glyphicon-trash" onclick="return confirm('ban chac chua?')"></button>
+					<a href="{{route('product.show',$pro->id)}}" class="btn btn-warning glyphicon glyphicon-eye-open" ></a>
 					</form>
+
 				</td>
 			</tr>
 			@endforeach

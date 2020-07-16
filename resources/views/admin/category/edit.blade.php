@@ -17,16 +17,16 @@
 		<label for="">Trạng Thái</label>
 		<div class="radio">
 			<label>
-				<input type="radio" name="status" id="input" value="1" checked>
+				<input type="radio" name="status" id="input" value="1" <?php echo $data->status == 1 ? 'checked' : ''; ?>>
 				Hiện
 			</label>
 			<label>
-				<input type="radio" name="status" id="input" value="0">
+				<input type="radio" name="status" id="input" value="0" <?php echo $data->status == 0 ? 'checked' : ''; ?>>
 				Ẩn
 			</label>
 		</div>
 	</div>
-	<button type="submit" class="btn btn-primary">Update</button>
+	<button type="Edit" class="btn btn-primary">Update</button>
 </form>
 @stop()
 @section('js')

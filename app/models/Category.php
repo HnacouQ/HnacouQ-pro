@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
      protected $table = 'category';
-     protected $fillable = ['name','status','slug'];
+     protected $fillable = ['name','status','slug','parent_id'];
+
+      // 1 category có n product => hasMany
+    public function products(){
+    	return $this->hasMany(Category::class,'category_id','id');
+    }
 }

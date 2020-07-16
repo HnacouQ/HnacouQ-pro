@@ -3,10 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Home</title>
+	<title>HnaCouQ | Home</title>
 	
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/bs3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/font-awesome/css/all.css">
+	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/css/style.css">
 </head>
 <body>
@@ -16,13 +18,13 @@
 				<div class="row">
 					<div class="top">
 						<div class="col-md-3 col-xs-3 header-logo">
-							<img src="{{url('public/home')}}/images/logo.png" alt="">
+							<a href="{{route('home')}}"><img src="{{url('public/home')}}/images/logohna.png" alt=""></a>
 						</div>
 						<div class="col-md-6 col-xs-6">
 							<div class="navbar my-nav">
 								<ul class="nav navbar-nav">
 									<li class="">
-										<a href="#">HOME</a>
+										<a href="{{route('home')}}">HOME</a>
 									</li>
 									<li>
 										<a href="#">SHOP</a>
@@ -71,8 +73,8 @@
 										</a>
 									</li>
 									<li class="head-cart">
-										<a href=""><img src="{{url('public/home')}}/images/icons/cart_icon.png" alt="">
-										<span class="icon-number">2</span>
+										<a href="{{route('cart')}}"><img src="{{url('public/home')}}/images/icons/cart_icon.png" alt="">
+										<span class="icon-number">{{$carts->total_quantity}}</span>
 										</a>
 										<div class="effect-cart">
 											
@@ -93,7 +95,7 @@
 				<div class="row my-footer">
 					<div class="col-md-3">
 						<h3>
-							<img src="{{url('public/home')}}/images/logo.png" alt="">
+							<img src="{{url('public/home')}}/images/logohna.png" alt="">
 						</h3>
 						<div class="adress">
 							<p>No.342 Oxford Stress,</p>
@@ -163,5 +165,27 @@
 	</div>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/jquery.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/docs/assets/vendors/jquery.min.js"></script>
+	<script type="text/javascript" src="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+	<script type="text/javascript">
+		$('.owl-carousel').owlCarousel({
+			loop:true,
+			autoplay:true,
+			autoplayTimeout:3000,
+			autoplayHoverPause:true,
+			responsive:{
+		        0:{
+		            items:1
+		        },
+		        600:{
+		            items:1
+		        },
+		        1000:{
+		            items:1
+		        }
+		    }
+
+		})
+	</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2020 at 08:52 AM
+-- Generation Time: Jul 16, 2020 at 07:28 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -31,13 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `banner` (
   `id` int(11) NOT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `content` tinyint(1) DEFAULT '1',
-  `img` varchar(200) COLLATE utf8_unicode_ci DEFAULT '1',
+  `type` tinyint(1) DEFAULT '1',
+  `image` varchar(200) COLLATE utf8_unicode_ci DEFAULT '1',
   `link` varchar(200) COLLATE utf8_unicode_ci DEFAULT '#',
-  `ordering` int(11) DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id`, `name`, `type`, `image`, `link`, `created_at`, `updated_at`) VALUES
+(1, 'banner', 1, '1594647798-banner.png', '#', '2020-07-13 06:43:18', '2020-07-13 06:43:18'),
+(2, 'banner-2', 1, '1594647932-banner-2.png', '#', '2020-07-13 06:45:32', '2020-07-13 06:45:32'),
+(3, 'banner-3', 1, '1594647952-banner-3.png', '#', '2020-07-13 06:45:52', '2020-07-13 06:45:52');
 
 -- --------------------------------------------------------
 
@@ -50,6 +58,7 @@ CREATE TABLE `category` (
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) DEFAULT '1',
   `slug` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -58,17 +67,11 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `status`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Áo Nam', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(2, 'Áo Nữ', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(3, 'Quần Nam', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(4, 'Chân Váy', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(5, 'Hoodie', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(6, 'Đồng Hồ', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(8, 'mũ', 1, '', '2020-07-08 11:07:32', '2020-07-08 09:28:38'),
-(9, 'Áo Nam & Nữ', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(10, 'Quần Nam & Nữ', 1, '', '2020-07-08 11:07:32', '2020-07-08 11:07:32'),
-(12, 'Ao khoac', 0, 'ao-khoac', '2020-07-08 20:26:25', '2020-07-08 20:26:25');
+INSERT INTO `category` (`id`, `name`, `status`, `slug`, `parent_id`, `created_at`, `updated_at`) VALUES
+(1, 'Thời Trang Nam', 1, 'thoi-trang-nam', 0, '2020-07-12 08:10:31', '2020-07-12 08:10:31'),
+(2, 'Thời Trang Nữ', 1, 'thoi-trang-nu', 0, '2020-07-12 08:10:47', '2020-07-12 08:10:47'),
+(3, 'Phụ Kiện', 1, 'phu-kien', 0, '2020-07-12 08:12:40', '2020-07-12 08:12:40'),
+(4, 'Áo sơ mi nam', 1, 'ao-so-mi-nam', 1, '2020-07-14 18:18:19', '2020-07-14 18:18:19');
 
 -- --------------------------------------------------------
 
@@ -164,6 +167,13 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('quocanh2298@gmail.com', '$2y$10$iFS4ZEQyGIrqNMnC1Hu2yOrYBIRvFOlINlpQi6qn.PNSZGhKZbzC2', '2020-07-11 02:13:46');
+
 -- --------------------------------------------------------
 
 --
@@ -177,6 +187,7 @@ CREATE TABLE `product` (
   `price` float NOT NULL,
   `sale_price` float DEFAULT '0',
   `content` text COLLATE utf8_unicode_ci,
+  `slug` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -187,8 +198,30 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `image`, `price`, `sale_price`, `content`, `category_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Áo dài', 'btvn3.jpg', 11111, 111, 'sadjdlkasjdklasdjlasdad', 2, 1, '2020-07-08 23:00:04', '2020-07-08 23:00:04');
+INSERT INTO `product` (`id`, `name`, `image`, `price`, `sale_price`, `content`, `slug`, `category_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Áo Sơ Mi Nam Chất liệu Kate lụa', '1594568209-Men1.jpg', 5000000, 200000, 'Chất vải: Lụa không nhăn.\r\nKiểu tay áo: Tay dài.\r\nĐường may tinh tế, tỉ mỉ trong từng chi tiết.\r\nÁo sơ mi nam họa tiết Cao cấp, không Bai, không Xù, Không mất phom sau thời gian dài sử dụng.\r\nChất vải mềm, mặc thoáng mát, thấm hút mồ hôi.', 'ao-so-mi-nam-chat-lieu-kate-lua', 1, 1, '2020-07-12 08:36:49', '2020-07-12 08:36:49'),
+(3, 'Full set Cá tính Nữ', '1594568492-woment9.jpg', 2500000, 0, 'đẹp', 'full-set-ca-tinh-nu', 2, 0, '2020-07-12 08:41:32', '2020-07-12 08:41:32'),
+(4, 'Black Dress Beautiful', '1594568566-women7.jpg', 2000000, 0, 'nice!', 'black-dress-beautiful', 2, 1, '2020-07-12 08:42:46', '2020-07-12 08:42:46'),
+(5, 'Áo Thun Hồng Nam Tính', '1594568629-men2.jpg', 600000, 0, 'đẹp', 'ao-thun-hong-nam-tinh', 1, 1, '2020-07-12 08:43:49', '2020-07-12 08:43:49'),
+(7, 'Áo Nam Fly-By-Air Black cool', '1594568789-men5.jpg', 700000, 0, 'đẹp', 'ao-nam-fly-by-air-black-cool', 1, 1, '2020-07-12 08:46:29', '2020-07-12 08:46:29'),
+(9, 'Đồ Ngủ Simple Nữ', '1594568925-women5.jpg', 200000, 0, 'đẹp', 'do-ngu-simple-nu', 2, 1, '2020-07-12 08:48:45', '2020-07-12 08:48:45'),
+(10, 'Áo Sơ Mi Sọc Kẻ Xanh Đỏ', '1594700492-men3.jpg', 2000000, 1500000, 'Đẹp', 'ao-so-mi-soc-ke-xanh-do', 1, 1, '2020-07-12 08:50:32', '2020-07-13 21:21:32'),
+(12, 'Vòng Tay Cá tính', '1594569145-phu-kien7.jpg', 500000, 450000, 'đẹp', 'vong-tay-ca-tinh', 3, 1, '2020-07-12 08:52:25', '2020-07-12 08:52:25'),
+(13, 'Thời trang công sở đơn giản', '1594569227-women1.jpg', 3520000, 0, 'đẹp', 'thoi-trang-cong-so-don-gian', 2, 1, '2020-07-12 08:53:47', '2020-07-12 08:53:47'),
+(14, 'Full set Trắng thoáng mát nữ', '1594569308-women3.jpg', 2000000, 1520000, 'đẹp', 'full-set-trang-thoang-mat-nu', 2, 0, '2020-07-12 08:55:08', '2020-07-12 08:55:08'),
+(15, 'Áo Phông Nam Trẻ Trung', '1594569389-men8.jpg', 650000, 500000, 'đẹp', 'ao-phong-nam-tre-trung', 1, 1, '2020-07-12 08:56:29', '2020-07-12 08:56:29'),
+(16, 'mũ Lưỡi Trai chất lượng cao', '1594569461-phu-kien4.jpg', 200000, 150000, 'đẹp', 'mu-luoi-trai-chat-luong-cao', 3, 0, '2020-07-12 08:57:41', '2020-07-12 08:57:41'),
+(17, 'Thắt lưng Nam và Nữ Đẹp', '1594569511-phu-kien3.jpg', 600000, 150000, 'đẹp', 'that-lung-nam-va-nu-dep', 3, 1, '2020-07-12 08:58:31', '2020-07-12 08:58:31'),
+(18, 'Dress Beautiful Girl', '1594569576-women8.jpg', 400000, 35000, 'đẹp', 'dress-beautiful-girl', 2, 0, '2020-07-12 08:59:36', '2020-07-12 08:59:36'),
+(19, 'áo Sơ Mi Kẻ sọc Trắng', '1594569631-men7.jpg', 600000, 500000, 'đẹp', 'ao-so-mi-ke-soc-trang', 1, 0, '2020-07-12 09:00:31', '2020-07-12 09:00:31'),
+(20, 'Cà Vạt Chất lượng Cao', '1594569689-phu-kien8.jpg', 400000, 0, 'đẹp', 'ca-vat-chat-luong-cao', 3, 0, '2020-07-12 09:01:29', '2020-07-12 09:01:29'),
+(21, 'Áo sơ mi kẻ sọc đen', '1594569730-men6.jpg', 1000000, 0, 'đẹp', 'ao-so-mi-ke-soc-den', 1, 1, '2020-07-12 09:02:10', '2020-07-12 09:02:10'),
+(22, 'Dress Simple Girl', '1594569804-women6.jpg', 2000000, 0, 'đẹp', 'dress-simple-girl', 2, 1, '2020-07-12 09:03:24', '2020-07-12 09:03:24'),
+(23, 'Áo Nam Nghịch Ngợm', '1594569843-men4.jpg', 1000000, 0, 'đẹp', 'ao-nam-nghich-ngom', 1, 1, '2020-07-12 09:04:03', '2020-07-12 09:04:03'),
+(24, 'Vòng Phong thủy', '1594569932-phu-kien6.jpg', 1000000, 0, 'đẹp', 'vong-phong-thuy', 3, 0, '2020-07-12 09:05:32', '2020-07-12 09:05:32'),
+(25, 'Đồ treo trang trí', '1594569971-phu-kien2.jpg', 100000, 20000, 'đẹp', 'do-treo-trang-tri', 3, 0, '2020-07-12 09:06:11', '2020-07-12 09:06:11'),
+(26, 'Mũ Lưỡi Trai Phối màu', '1594575598-phu-kien10.jpg', 1000000, 500000, 'đẹp', 'mu-luoi-trai-phoi-mau', 3, 0, '2020-07-12 10:39:58', '2020-07-12 10:39:58'),
+(27, 'Vòng Phong Thủy màu xanh', '1594575691-phu-kien9.png', 2000000, 1000000, 'đẹp', 'vong-phong-thuy-mau-xanh', 3, 1, '2020-07-12 10:41:31', '2020-07-12 10:41:31');
 
 -- --------------------------------------------------------
 
@@ -200,6 +233,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -211,14 +245,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Quốc Anh', 'quocanh2298@gmail.com', NULL, '$2y$10$FbLY4UWJDwc.Q6Iy5PmuWO1CFfX7nCal3k15.6SnHmCfk.DWUn..e', NULL, '2020-07-07 22:09:17', '2020-07-07 22:09:17'),
-(2, 'Huỳnh Quốc Anh', 'admin@gmail.com', NULL, '$2y$10$mJzQgXKLX32jiBJ8rTlN2uKDr7CXta4Kn/wuJIYZMnq/BJQm8Gk7C', NULL, '2020-07-08 00:58:25', '2020-07-08 00:58:25'),
-(3, 'Cao Trần Đại', 'Daiubqn113@gmail.com', NULL, '$2y$10$RF3imp9DmnORbFwvo.JtX.faUujiRLR4K3fX7wLqHAKSHU3tppeWO', NULL, '2020-07-08 01:12:20', '2020-07-08 01:12:20'),
-(4, 'Huyền', 'hna@gmail.com', NULL, '$2y$10$mr8GrUOYSd5PXy4JeEsxsepTmrxmYr6bHStC2rCig7nuexIFWuCB2', NULL, '2020-07-08 01:41:17', '2020-07-08 01:41:17'),
-(5, 'HnaCouQ', 'qa012@gmail.com', NULL, '$2y$10$4rjKokhCDuzWf6K.QP1dcOHHCKECoopQam7hfzIyKTl0TFeYtocVe', NULL, '2020-07-08 01:42:42', '2020-07-08 01:42:42'),
-(6, 'hádasd', 'hnaCouQ@123.com', NULL, '$2y$10$yjTjVcUWaMag1zEqDRCtSu59/M0jHXvsVUgYwCq3Z3I5DijiVHcea', NULL, '2020-07-08 01:44:00', '2020-07-08 01:44:00'),
-(7, 'qưeqweqe', 'qweq@gmail.com', NULL, '$2y$10$M2g2ljov61KlfbujrE7fNuiJLzODdeeioqneTzhwWSWAWwQo/jBZa', NULL, '2020-07-08 01:46:17', '2020-07-08 01:46:17');
+INSERT INTO `users` (`id`, `name`, `email`, `image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Quốc Anh', 'quocanh2298@gmail.com', 'Anhthe-1.jpg', NULL, '$2y$10$FbLY4UWJDwc.Q6Iy5PmuWO1CFfX7nCal3k15.6SnHmCfk.DWUn..e', 'QjGxnu6gmzZpLiz3fOtj3bUSOtm9gTHo0ZIFyF1Ip6NsQv1gyFGE52VjFOca', '2020-07-07 22:09:17', '2020-07-07 22:09:17'),
+(2, 'Huỳnh Quốc Anh', 'admin@gmail.com', NULL, NULL, '$2y$10$mJzQgXKLX32jiBJ8rTlN2uKDr7CXta4Kn/wuJIYZMnq/BJQm8Gk7C', NULL, '2020-07-08 00:58:25', '2020-07-08 00:58:25'),
+(5, 'HnaCouQ', 'qa012@gmail.com', NULL, NULL, '$2y$10$4rjKokhCDuzWf6K.QP1dcOHHCKECoopQam7hfzIyKTl0TFeYtocVe', NULL, '2020-07-08 01:42:42', '2020-07-08 01:42:42');
 
 --
 -- Indexes for dumped tables
@@ -294,13 +324,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -330,13 +360,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
