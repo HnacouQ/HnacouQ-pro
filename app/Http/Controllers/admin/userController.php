@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use App\models\Customer;
 
 class userController extends Controller
 {
@@ -93,5 +94,18 @@ class userController extends Controller
         else{
             return redirect()->back()->with('success','Xóa Thất Bại!!!');
         }
+    }
+
+    //test
+    public function test(){
+        Customer::create([
+            'name' => 'HnacouQ',
+            'email' => 'Quocanh@gmail.com',
+            'phone' => '0921313931',
+            'address' => 'HaNoi',
+            'password'=> bcrypt('123456')
+          
+        ]);
+
     }
 }

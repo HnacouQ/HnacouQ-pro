@@ -1,0 +1,2 @@
+<h3>hello {{$name}} .........{{ $pass}}</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid sequi architecto laudantium assumenda omnis eum, ea praesentium nostrum iure! Saepe earum quaerat quam natus ut quasi reiciendis ducimus cupiditate atque.</p>

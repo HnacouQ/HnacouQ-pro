@@ -20,14 +20,14 @@
 						<div class="col-md-3 col-xs-3 header-logo">
 							<a href="{{route('home')}}"><img src="{{url('public/home')}}/images/logohna.png" alt=""></a>
 						</div>
-						<div class="col-md-6 col-xs-6">
+						<div class="col-md-5 col-xs-5">
 							<div class="navbar my-nav">
 								<ul class="nav navbar-nav">
 									<li class="">
 										<a href="{{route('home')}}">HOME</a>
 									</li>
 									<li>
-										<a href="#">SHOP</a>
+										<a href="{{route('shop_page')}}">SHOP</a>
 									</li>
 									<li>
 										<a href="#">PAGE</a>
@@ -36,20 +36,37 @@
 										<a href="#">BLOG</a>
 									</li>
 									<li>
-										<a href="#">CONTACT</a>
+										<a href="{{route('home_contact')}}">CONTACT</a>
 									</li>
 								</ul>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-3">
+						<div class="col-md-4 col-sm-4">
 							<div class="navbar my-nav">
 								<ul class="nav navbar-nav">
-									<li class="">
-										<a href=""><img src="{{url('public/home')}}/images/icons/user.png" alt=""></a>
+									<li class="" >
+										@if(isset(Auth::guard('cus')->user()->email))
+										<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-transform: capitalize">{{Auth::guard('cus')->user()->name}}<b class="caret"></b></a>
+										<ul class="dropdown-menu" >
+											<li><a href="{{route('home_logout')}}" style="text-transform: capitalize">đăng xuất</a></li>
+										</ul>
+										</li>
+										@else
+										<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{url('public/home')}}/images/icons/user.png" alt=""><b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="{{route('home_login')}}" style="text-transform: capitalize">đăng nhập</a></li>
+											
+											<li><a href="{{route('register')}}" style="text-transform: capitalize">đăng ký</a></li>
+										</ul>
+										</li>
+										
+										@endif
 									</li>
 									<li>
 										<a data-toggle="modal" href="#modal-id"><img src="{{url('public/home')}}/images/icons/search.jpg" alt=""></a>
-										<div class="modal fade" id="modal-id">
+										<div class="modal fade" id="modal-id">{{url('public/home')}}/
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -67,6 +84,7 @@
 											</div>
 										</div>
 									</li>
+									
 									<li>
 										<a href=""><img src="{{url('public/home')}}/images/icons/heart_icon.png" alt="">
 											<span class="icon-number">2</span>
@@ -76,9 +94,7 @@
 										<a href="{{route('cart')}}"><img src="{{url('public/home')}}/images/icons/cart_icon.png" alt="">
 										<span class="icon-number">{{$carts->total_quantity}}</span>
 										</a>
-										<div class="effect-cart">
-											
-										</div>
+										
 									</li>
 								</ul>
 							</div>

@@ -10,6 +10,11 @@ use App\helper\Cart;
 class CartController extends Controller
 {
     //
+
+    // public function __construct(){
+    //     $this->middleware('cus');
+    // }
+
     public function index(){
         // $carts = session('cart');
       return view('home.cart');
@@ -18,7 +23,7 @@ class CartController extends Controller
         $pro = Product::find($id);
     	$cart->add( $pro,$quantity);
 
-        return redirect()->route('home')->with('success','Thêm Vào Giỏ Hàng Thành Công');
+        return redirect()->route('shop_page')->with('success','Thêm Vào Giỏ Hàng Thành Công');
     }
     public function remove($id,Cart $cart){
         $cart ->remove($id);

@@ -20,6 +20,11 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
 						<table class="table table-hover">
+							@if(Session::has('success'))
+							<div class="alert alert-success text-center">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							{{Session::get('success')}}
+							@endif
 							<thead>
 								<tr>
 									<th>Ảnh Và Tên Sán Phẩm</th>
@@ -104,7 +109,7 @@
 											</td>
 										</tr>
 									</table>
-									<a href="" class="btn btn-danger btn-proceed" >Tiến Hành Đặt Hàng</a>
+									<a href="{{route('checkout')}}" class="btn btn-danger btn-proceed" >Tiến Hành Đặt Hàng</a>
 								</div>
 							</div>
 						</div>
