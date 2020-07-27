@@ -80,7 +80,7 @@
 											Shipping
 										</th>
 										<td class="product-price">
-											<span class="amount">{{number_format($carts->ship_price)}} đ</span>
+											<span class="amount">Free</span>
 										</td>
 									</tr>
 									<tr class="total">
@@ -88,7 +88,7 @@
 											Total
 										</th>
 										<td class="product-price">
-											<span class="amount" style="color: red;">{{number_format($carts->total_price-$carts->ship_price)}} đ</span>
+											<span class="amount" style="color: red;">{{number_format($carts->total_price)}} đ</span>
 										</td>
 									</tr>
 								</table>

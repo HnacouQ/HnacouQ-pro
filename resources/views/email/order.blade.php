@@ -2,8 +2,8 @@
 
 <p>Bạn đã đặt hàng thành công tại của hàng: HnacouQ-Shop!!! Cảm ơn bạn!</p>
 <h4>-----Thông tin đơn hàng của bạn------</h4>
-<h4>Mã đơn hàng của bạn:{{$order->id}}  </h4>
-<h4>Ngày đặt:{{$order->created_at}}</h4>
+<h4>Mã đơn hàng của bạn: {{$order->id}}  </h4>
+<h4>Ngày đặt: {{$order->created_at}}</h4>
 <h4>Chi tiết đơn hàng</h4>
 <table border="1" cellpadding="10" cellspacing="0" width="500">
 	<thead>
@@ -31,6 +31,6 @@
 
 	</tbody>
 </table>
-<h4>Phí vận chuyển: {{number_format($carts->ship_price)}} đ</h4>
-<h4>Tổng tiền đơn hàng của bạn: {{number_format($carts->total_price-$carts->ship_price)}} đ</h4>
+<h4>Phí vận chuyển: Free </h4>
+<h4>Tổng tiền đơn hàng của bạn: {{number_format($carts->total_price)}} đ</h4>
 

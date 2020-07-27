@@ -33,6 +33,10 @@
 	opacity: 0;
 }
 
+.nav .open > a:focus{
+	background-color: #fff;
+}
+
 .my-nav li .effect-cart::before{
 	content: "";
 	border: 20px solid;
@@ -225,6 +229,20 @@
 	position: relative;
 	border: none;
 
+}
+
+.pro-img{
+	height: 350px;
+	
+}
+
+.pro-img img{
+	width: 100%;
+	height: 100%;
+}
+
+.my-pro .caption{
+	/* height: 160px; */
 }
 
 

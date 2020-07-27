@@ -131,6 +131,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         //validate
 
         $this->validate($request,[
@@ -161,8 +163,9 @@ class ProductController extends Controller
         $request -> offsetUnset('_token');
         $request -> offsetUnset('_method');
          
-
-        if ($request->has('upload')) {
+        $img_name = $data->image;
+        // dd($img_name);
+        if (!empty($request->has('upload'))) {
             # code...
             $img_name = time().'-'.$request->upload->getClientOriginalName();
             $request->upload->move(public_path('uploads/product'),$img_name);

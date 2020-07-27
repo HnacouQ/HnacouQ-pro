@@ -5,6 +5,8 @@ use App\models\Product;
 use Illuminate\Http\Request;
 use App\models\Banner;
 use App\models\Customer;
+use App\models\Category;
+
 use Auth;
 use Mail;
 
@@ -103,6 +105,36 @@ class HomeController extends Controller
     public function shop_page(){
       $product = Product::where('status',1)->orderBy('id','DESC')->paginate(6);
       return view('home.shop',compact('product'));
+    }
+
+    public function view($slug){
+       $category = Category::all();
+       $data = Category::where('slug',$slug)->first();
+       $prod = Product::where('slug',$slug)->first();
+
+       // dd($data);
+      // $pro = Product::where('slug',$slug)->first();
+       if ($data) {
+         //có slug của danh mục thì lấy
+          return view('home.shop_page_view',compact('category','data'));
+       }else if ($prod) {
+        //có slug sản phẩm thì lấy
+        return view('home.pro_detail',compact('category','prod'));
+       }else{
+        //không có cả 2 thì chuyển về 404
+        return view('home.404');
+       }
+
+     
+    }
+
+    public function shop_page_left(){
+
+      $category = Category::all();
+      $product = Product::where('status',1)->orderBy('id','DESC')->paginate(6);
+      // dd($category);
+
+      return view('home.shop_page_left',compact('category','product'));
     }
 
     public function contact(){

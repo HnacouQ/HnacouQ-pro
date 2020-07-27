@@ -27,6 +27,8 @@ Route::get('testmail','HomeController@test_mail');
 Route::get('register','HomeController@register')->name('register');
 Route::post('register','HomeController@post_register')->name('register');
 Route::get('shop_page','HomeController@shop_page')->name('shop_page');
+Route::get('-{slug}','HomeController@view')->name('view');
+Route::get('shop_page_left','HomeController@shop_page_left')->name('shop_page_left');
 
 
 

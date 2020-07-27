@@ -10,7 +10,7 @@
 		public $items;
 		public $total_quantity;
 		public $total_price;
-		public $ship_price = 200000;
+		
 		
 		function __construct()
 		{
@@ -52,6 +52,7 @@
 
 		public function update($id,$quantity){
 			$qtt = $quantity > 0 ? ceil($quantity) : 1;
+			$qtt = $quantity < 50 ? ceil($quantity) : 50;
 			if(isset($this->items[$id])){
 				$this->items[$id]['quantity'] = $qtt;
 			}

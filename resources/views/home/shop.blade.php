@@ -26,7 +26,7 @@
 								<a href=""><img src="{{url('public/home')}}/images/icons/icon-clearfix.png" alt=""></a>
 							</li>
 							<li>
-								<a href="shop-page-left-sidebar.html"><img src="{{url('public/home')}}/images/icons/icon-clearfix1.png" alt=""></a>
+								<a href="{{route('shop_page_left')}}"><img src="{{url('public/home')}}/images/icons/icon-clearfix1.png" alt=""></a>
 							</li>
 						</ul>
 					</div>
@@ -35,8 +35,10 @@
 							@foreach($product as $pro)
 							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="thumbnail my-pro">
-									<img src="{{url('public/uploads/product')}}/{{$pro->image}}" alt="">
-									<div class="caption text-center">
+									<div class="pro-img">
+										<img src="{{url('public/uploads/product')}}/{{$pro->image}}" alt="">
+									</div>
+									<div class="caption text-center" style="padding: 40px 15px; height: 160px">
 										<h4>{{$pro->name}}</h4>
 										<img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
                                             @if($pro->sale_price == 0)
@@ -56,7 +58,7 @@
 										<div class="pro-effect-item">
 											<ul>
 												<li>
-													<a href=""><i class="fas fa-search"></i></a>
+													<a href="{{route('view',['slug' => $pro->slug])}}"><i class="fas fa-search"></i></a>
 												</li>
 												<li>
 													<a href="{{route('cart.add',['id'=>$pro->id])}}"><i class="fas fa-shopping-cart"></i></a>

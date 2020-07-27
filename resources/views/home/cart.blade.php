@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
+
 		<div class="banner">
 			<div class="container">
 				<div class="banner-content">
@@ -97,7 +98,7 @@
 												Phí Vận Chuyển:
 											</th>
 											<td class="">
-												<span class="amount"  style="color: red;">{{number_format($carts->ship_price)}} đ</span>
+												<span class="amount"  style="color: red;">Free</span>
 											</td>
 										</tr>
 										<tr class="cart_table_item">
@@ -105,7 +106,7 @@
 												Tổng Tiền :
 											</th>
 											<td class="product-price">
-												<span class="amount" style="color: red;">{{number_format($carts->total_price-$carts->ship_price)}} đ</span>
+												<span class="amount" style="color: red;">{{number_format($carts->total_price)}} đ</span>
 											</td>
 										</tr>
 									</table>

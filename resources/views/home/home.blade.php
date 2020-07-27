@@ -149,7 +149,9 @@
                                                     @foreach($all as $al)
                                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="thumbnail my-pro">
-                                                            <img src="{{url('public/uploads/product')}}/{{$al->image}}" alt="" width="">
+                                                            <div class="pro-img">
+                                                                <img src="{{url('public/uploads/product')}}/{{$al->image}}" alt="" width="">
+                                                            </div>
                                                             <div class="caption text-center" style="padding: 40px 15px">
                                                                 <h4>{{$al->name}}</h4>
                                                                 <img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
@@ -173,7 +175,7 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href=""><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('view',['slug' => $al->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href="{{route('cart.add',['id'=>$al->id])}}"><i class="fas fa-shopping-cart"></i></a>
@@ -196,8 +198,10 @@
                                                      @foreach($men as $mens)
                                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="thumbnail my-pro">
-                                                            <img src="{{url('public/uploads/product')}}/{{$mens->image}}" alt="" width="">
-                                                            <div class="caption text-center" style="padding: 40px 15px">
+                                                            <div class="pro-img">
+                                                                <img src="{{url('public/uploads/product')}}/{{$mens->image}}" alt="" width="">
+                                                            </div>
+                                                            <div class="caption text-center" style="padding: 40px 15px; height: 160px">
                                                                 <h4>{{$mens->name}}</h4>
                                                                 <img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
                                                                 @if($mens->sale_price == 0)
@@ -220,7 +224,7 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href=""><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('view',['slug' => $mens->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href="{{route('cart.add',['id'=>$mens->id])}}"><i class="fas fa-shopping-cart"></i></a>
@@ -243,7 +247,9 @@
                                                      @foreach($women as $wo)
                                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="thumbnail my-pro">
-                                                            <img src="{{url('public/uploads/product')}}/{{$wo->image}}" alt="" width="">
+                                                        <div class="pro-img">
+                                                                <img src="{{url('public/uploads/product')}}/{{$wo->image}}" alt="" width="">
+                                                        </div>
                                                             <div class="caption text-center" style="padding: 40px 15px">
                                                                 <h4>{{$wo->name}}</h4>
                                                                 <img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
@@ -267,7 +273,7 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href=""><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('view',['slug' => $wo->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href="{{route('cart.add',['id'=>$wo->id])}}"><i class="fas fa-shopping-cart"></i></a>
@@ -290,8 +296,10 @@
                                                      @foreach($asso as $as)
                                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="thumbnail my-pro">
-                                                            <img src="{{url('public/uploads/product')}}/{{$as->image}}" alt="" width="">
-                                                            <div class="caption text-center" style="padding: 40px 15px">
+                                                           <div class="pro-img">
+                                                                <img src="{{url('public/uploads/product')}}/{{$as->image}}" alt="" width="">
+                                                           </div>
+                                                            <div class="caption text-center" style="padding: 40px 15px; ">
                                                                 <h4>{{$as->name}}</h4>
                                                                 <img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
                                                                 @if($as->sale_price == 0)
@@ -314,7 +322,7 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href=""><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('view',['slug' => $as->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href="{{route('cart.add',['id'=>$as->id])}}"><i class="fas fa-shopping-cart"></i></a>

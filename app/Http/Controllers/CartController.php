@@ -23,7 +23,7 @@ class CartController extends Controller
         $pro = Product::find($id);
     	$cart->add( $pro,$quantity);
 
-        return redirect()->route('shop_page')->with('success','Thêm Vào Giỏ Hàng Thành Công');
+        return redirect()->route('cart')->with('success','Thêm Vào Giỏ Hàng Thành Công');
     }
     public function remove($id,Cart $cart){
         $cart ->remove($id);
