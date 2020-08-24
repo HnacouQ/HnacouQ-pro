@@ -30,6 +30,7 @@ class userController extends Controller
     public function create()
     {
         //
+        return view('admin.user.create');
     }
 
     /**
@@ -40,7 +41,30 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required'
+        ],[
+            'name.required' => 'Tên user không được để trống!!',
+            'email.required' => 'Tên email không được để trống!!',
+            'email.email' => 'Email không đúng định dạng!! VD: sadad@gmail.com',
+            'email.unique' => 'email này đã tồn tại!',
+            'password.required' => 'password không được để trống!!'
+
+
+        ]);
         //
+        $add  = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        if ($add) {
+            # code...
+            return redirect()->route('user.index')->with('success','Bạn thêm mới user thành công!');
+        }
     }
 
     /**
@@ -60,9 +84,13 @@ class userController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
+        $data = User::find($id);
+        // dd($data->name);
+        return view('admin.user.edit',compact('data'));
+
     }
 
     /**
@@ -72,9 +100,14 @@ class userController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
+
+        $request -> offsetUnset('_token');
+         $request -> offsetUnset('_method');
+        User::where(['id'=>$id])->update($request->all());
+        return redirect()->route('user.index')->with('success','dữ liệu đã đc sửa thành công!!');
     }
 
     /**
@@ -108,4 +141,11 @@ class userController extends Controller
         ]);
 
     }
+    public function search(Request $request){
+        $search = $request->get('search');
+
+         $data = User::where('name','like','%'.$search.'%')->paginate(5);
+        return view('admin.user.index',compact('data'));
+        
+    }  
 }

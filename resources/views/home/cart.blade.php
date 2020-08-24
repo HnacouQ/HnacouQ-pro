@@ -50,7 +50,7 @@
 
 									</td>
 									<td class="pro-total-cart" style="color: red;">{{number_format($item['quantity']*$item['price'])}} đ</td>
-									<th class="pro-delete"><a href="{{route('cart.remove',['id'=>$item['id']])}}"><img src="{{url('public/home')}}/images/icons/Trash_icon.png" alt=""></a></th>
+									<th class="pro-delete"><a href="{{route('cart.remove',['id'=>$item['id']])}}" onclick="return confirm('Bạn có chắc chắn không?')"><img src="{{url('public/home')}}/images/icons/Trash_icon.png" alt=""></a></th>
 								</tr>
 								
 								@endforeach
@@ -59,7 +59,7 @@
 						<div class="clear-update-shop-cart">
 							<div class="row">
 								<div class="col-md-3">
-									<a href="{{route('cart.clear')}}" class="btn btn-danger clear">Xóa Toàn Bộ Giỏ Hàng</a>
+									<a href="{{route('cart.clear')}}" class="btn btn-danger clear" onclick="return confirm('Bạn có chắc chắn không?')">Xóa Toàn Bộ Giỏ Hàng</a>
 								</div>
 								
 								<div class="col-md-9 text-right">

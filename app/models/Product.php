@@ -14,4 +14,8 @@ class Product extends Model
     public function cat(){
     	return $this->hasOne(Category::class,'id','category_id');
     }
+    //1 sản phẩm cố thể nằm trong nhiều đơn hàng
+    public function or_detail(){
+        return $this->hasMany(OrderDetail::class,'product_id','id');
+    }
 }

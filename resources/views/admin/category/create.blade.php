@@ -2,7 +2,7 @@
 
 @section('title','Thêm Danh mục Category')
 @section('content')
-<form action="{{route('category.store')}}" method="POST" role="form">
+<form action="{{route('category.store')}}" method="POST" role="form" >
 	@csrf
 	<div class="form-group">
 		<label for="">Tên Danh Mục</label>

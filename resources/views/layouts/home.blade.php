@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>HnaCouQ | Home</title>
-	
+	<link rel="icon" href="{{asset('public/home/images/graduation cap.png')}}">
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/bs3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/font-awesome/css/all.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">

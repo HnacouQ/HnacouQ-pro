@@ -5,6 +5,7 @@
 <form action="{{route('banner.update',$data->id)}}" method="POST" role="form" enctype="multipart/form-data">
 	@csrf
 	@method('PATCH')
+	
 	<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">

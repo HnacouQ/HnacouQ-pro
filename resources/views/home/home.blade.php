@@ -372,7 +372,7 @@
                             <div class="blog-new-item">
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <a href="#" class="thumbnail">
-                                        <img src="{{url('public/home')}}/images/Blog/blog.png" alt="">
+                                        <img src="{{url('public/home')}}/images/Blog/blog2.png" alt="">
                                     </a>
                                     <p class="color-gray">january 19,2020 by <span class="color-black">admin</span></p>
                                     <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Evelit</h4>
@@ -382,7 +382,7 @@
                             <div class="blog-new-item">
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <a href="#" class="thumbnail">
-                                        <img src="{{url('public/home')}}/images/Blog/blog.png" alt="">
+                                        <img src="{{url('public/home')}}/images/Blog/blog3.png" alt="">
                                     </a>
                                     <p class="color-gray">january 19,2020 by <span class="color-black">admin</span></p>
                                     <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Evelit</h4>

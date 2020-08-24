@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title','Banner')
 @section('content')
-<form action="" method="POST" class="form-inline" role="form">
+<form action="{{route('search_user')}}" method="GET" class="form-inline" role="form">
 			<div class="form-group">
-				<label class="sr-only" for="">label</label>
-				<input type="email" class="form-control" id="" placeholder="Search....">
+				<label class="sr-only"   for="">label</label>
+				<input type="search" name="search" class="form-control" id="" placeholder="Search....">
 			</div>
 			<button type="submit" class="btn btn-primary">Search</button>
 			<span><a href="{{route('user.create')}}" class="btn btn-primary glyphicon glyphicon-plus "></a></span>
@@ -29,7 +29,7 @@
 			<tr>
 				<td>{{$us->id}}</td>
 				<td>{{$us->name}}</td>
-				<td>{{$us->created_at}}</td>
+				<td>{{date('d/m/Y',strTotime($us->created_at))}}</td>
 				<td>
 
 					<form action="{{ route('user.destroy', $us->id) }}" method="POST">
@@ -37,7 +37,7 @@
 						<input type="hidden" name="_method" value="DELETE">
 					<a href="{{route('user.edit',$us->id)}}" class="btn btn-primary glyphicon glyphicon-pencil"></a>
 					<button type="submit" class="btn btn-danger glyphicon glyphicon-trash" onclick="return confirm('ban chac chua?')"></button>
-					<a href="{{route('user.show',$us->id)}}" class="btn btn-primary glyphicon glyphicon-eye-open"></a>
+					
 					</form>
 				</td>
 			</tr>

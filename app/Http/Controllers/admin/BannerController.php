@@ -135,4 +135,11 @@ class BannerController extends Controller
         return redirect()->back()->with('success','Xóa Thành Công');
 
     }
+    public function search(Request $request){
+        $search = $request->get('search');
+
+         $data = Banner::where('name','like','%'.$search.'%')->paginate(5);
+        return view('admin.banner.index',compact('data'));
+        
+    }  
 }

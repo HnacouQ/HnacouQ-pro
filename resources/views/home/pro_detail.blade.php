@@ -98,52 +98,51 @@
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nihil iure, delectus, expedita itaque tempore autem deleniti, soluta enim, totam ducimus molestiae! Ad officiis a, reiciendis sed et excepturi nostrum.</p>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nihil iure, delectus, expedita itaque tempore autem deleniti, soluta enim, totam ducimus molestiae! Ad officiis a, reiciendis sed et excepturi nostrum.</p></div>
 									<div role="tabpanel" class="tab-pane active" id="Review">
-										<div class="comment">
-											<div class="media">
-												<a class="pull-left" href="#">
-													<img class="media-object img-circle" src="images/product/product1.png" alt="Image">
-												</a>
-												<div class="media-body">
-													<h4 class="media-heading">Quốc Anh</h4><span>| 2 days ago</span>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro ad eligendi quaerat earum sed, illum corrupti dolor dolores, molestiae nulla blanditiis officia</p>
+										@if(isset($comment))
+											@foreach($comment as $com)
+											<div class="comment">
+												<div class="media">
+													<a class="pull-left" href="#">
+														<img class="media-object img-circle" src="https://www.gravatar.com/avatar/{{md5($com->email)}}" alt="Image">
+													</a>
+													<div class="media-body">
+														<h4 class="media-heading">{{$com->name}}</h4><span> | {{date('d/m/Y H:i',strTotime($com->created_at))}}</span>
+														<p>{{$com->content}}</p>
+													</div>
 												</div>
 											</div>
-											<div class="media">
-												<a class="pull-left" href="#">
-													<img class="media-object img-circle" src="images/product/product1.png" alt="Image">
-												</a>
-												<div class="media-body">
-													<h4 class="media-heading">Quốc Anh</h4><span>| 2 days ago</span>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro ad eligendi quaerat earum sed, illum corrupti dolor dolores, molestiae nulla blanditiis officia</p>
+											@endforeach
+										@else
+											<div class="comment">
+												<div class="media">
+													<a class="pull-left" href="#">
+														<img class="media-object img-circle" src="" alt="Image">
+													</a>
+													<div class="media-body">
+														<h4 class="media-heading">name</h4><span>| 2 days ago</span>
+														<p>chưa có bình luận nào</p>
+													</div>
 												</div>
 											</div>
-											<div class="media">
-												<a class="pull-left" href="#">
-													<img class="media-object img-circle" src="images/product/product1.png" alt="Image">
-												</a>
-												<div class="media-body">
-													<h4 class="media-heading">Quốc Anh</h4><span>| 2 days ago</span>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro ad eligendi quaerat earum sed, illum corrupti dolor dolores, molestiae nulla blanditiis officia</p>
-												</div>
-											</div>
-										</div>
+										@endif
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="product-detail-review col-md-12">
-							<form action="" method="POST" class="form-horizontal" role="form">
+							<form action="{{route('comment',['slug' => $prod->slug ])}}" method="POST" class="form-horizontal" role="form">
+								@csrf
 									<div class="form-group">
 										<div class="col-md-6">
-											<input type="text" name="" id="" placeholder="Your Name">
+											<input type="text" name="name" id=""  placeholder="Your Name">
 										</div>
 										<div class="col-md-6">
-											<input type="text" name="" id="" placeholder="E-Mail Address">
+											<input type="text" name="email" id="" placeholder="E-Mail Address">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-12">
-											<textarea name="" id="input" class="form-control" rows="5" required="required" placeholder="Your Text here"></textarea>
+											<textarea name="content" id="input" class="form-control" rows="5" required="required" placeholder="Your Text here"></textarea>
 										</div>
 									</div>
 									<div class="form-group">

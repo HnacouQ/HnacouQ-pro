@@ -51,8 +51,9 @@
 		}
 
 		public function update($id,$quantity){
+			
+			// $qtt = $quantity < 50 ? ceil($quantity) : 50;
 			$qtt = $quantity > 0 ? ceil($quantity) : 1;
-			$qtt = $quantity < 50 ? ceil($quantity) : 50;
 			if(isset($this->items[$id])){
 				$this->items[$id]['quantity'] = $qtt;
 			}

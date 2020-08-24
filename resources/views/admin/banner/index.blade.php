@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title','Banner')
 @section('content')
-<form action="" method="POST" class="form-inline" role="form">
+<form action="{{route('search_ban')}}" method="GET" class="form-inline" role="form">
 			<div class="form-group">
 				<label class="sr-only" for="">label</label>
-				<input type="email" class="form-control" id="" placeholder="Search....">
+				<input type="text" name="search" class="form-control" id="" placeholder="Search....">
 			</div>
 			<button type="submit" class="btn btn-primary">Search</button>
 			<span><a href="{{route('banner.create')}}" class="btn btn-primary glyphicon glyphicon-plus "></a></span>
@@ -31,7 +31,7 @@
 				<td>{{$ban->id}}</td>
 				<td>{{$ban->name}}</td>
 				<td>{{$ban->type}}</td>
-				<td>{{$ban->created_at}}</td>
+				<td>{{date('d/m/Y',strTotime($ban->created_at))}}</td>
 				<td>
 
 					<form action="{{ route('banner.destroy', $ban->id) }}" method="POST">

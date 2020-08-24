@@ -6,6 +6,7 @@
   <title>Trang Quản Trị | @yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="icon" href="{{asset('public/home/images/graduation cap.png')}}">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{url('public/ad')}}/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{url('public/ad')}}/css/font-awesome.min.css">
@@ -25,6 +26,11 @@
       return "{{url('')}}";
     }
   </script>
+  <style>
+    body{
+      font-family:  roboto;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -143,9 +149,10 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span> QL-Category</span>
+           <i class="fa fa-snowflake-o" aria-hidden="true"></i><span> QL Danh mục</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
+               <small class="label pull-right bg-blue">{{$category_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -154,9 +161,10 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>QL-User</span>
+           <i class="fa fa-user-secret" aria-hidden="true"></i></i> <span>QL User</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
+               <small class="label pull-right bg-blue">{{$user_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -165,9 +173,11 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>QL-Product</span>
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <span>QL Sản phẩm</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
+               <small class="label pull-right bg-blue">{{$product_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -176,14 +186,24 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>QL-Banner</span>
+          <i class="fa fa-sliders" aria-hidden="true"></i><span>QL Banner</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
+               <small class="label pull-right bg-blue">{{$banner_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('banner.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
           </ul>
+        </li>
+        <li class="active">
+          <a href="{{route('list_order')}}">
+            <i class="fa fa-book" aria-hidden="true"></i><span>DS Đơn hàng</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-red">{{$or_news_count}}</small>
+              <small class="label pull-right bg-blue">{{$order_count}}</small>
+            </span>
+          </a>
         </li>
         
         

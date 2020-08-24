@@ -18,7 +18,7 @@ class Customer extends Authenticatable
     protected $table = 'customer';
 
     protected $fillable = [
-        'name', 'email', 'password','phone','adress'
+        'name', 'email', 'password','phone','address'
     ];
 
     /**
@@ -38,4 +38,5 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
 }

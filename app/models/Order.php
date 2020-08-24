@@ -8,5 +8,10 @@ class Order extends Model
 {
     //
      protected $table = 'orders';
-     protected $fillable = ['name','email','phone','address','order_note','payment_method','customer_id'];
+     protected $fillable = ['name','email','phone','address','order_note','payment_method','customer_id','status'];
+
+     public function or_detai(){
+        return $this->hasMany(OrderDetail::class,'order_id','id');
+    }
+
 }

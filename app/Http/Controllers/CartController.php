@@ -33,6 +33,7 @@ class CartController extends Controller
     }
     public function update($id,Cart $cart){
         $quantity = Request()->quantity;
+        
         $cart->update($id,$quantity);
 
           return redirect()->route('cart')->with('success','Cập Nhật Giỏ Hàng Thành Công');

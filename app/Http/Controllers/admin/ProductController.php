@@ -163,13 +163,15 @@ class ProductController extends Controller
         $request -> offsetUnset('_token');
         $request -> offsetUnset('_method');
          
-        $img_name = $data->image;
+        // $img_name = $data->image;
         // dd($img_name);
-        if (!empty($request->has('upload'))) {
+        if ($request->has('upload')) {
             # code...
             $img_name = time().'-'.$request->upload->getClientOriginalName();
             $request->upload->move(public_path('uploads/product'),$img_name);
             $request->merge(['image' =>  $img_name]);
+        }else{
+            $img_name = time().'-'.$request->image;
         }
 
       
@@ -182,7 +184,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'sale_price' => $request->sale_price,
             'status' => $request->status,
-            'image' => $request->image
+            'image' => $request->image,
         ]);
         return redirect()->route('product.index')->with('success','Dữ liệu Được Sửa Thành Công');
 
@@ -206,4 +208,11 @@ class ProductController extends Controller
             return redirect()->back()->with('success','Xóa Thất Bại!!!');
         }
     }
+    public function search(Request $request){
+        $search = $request->get('search');
+
+         $data = Product::where('name','like','%'.$search.'%')->paginate(5);
+        return view('admin.product.index',compact('data'));
+        
+    }  
 }

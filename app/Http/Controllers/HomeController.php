@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Banner;
 use App\models\Customer;
 use App\models\Category;
+use App\models\Comment;
 
 use Auth;
 use Mail;
@@ -111,6 +112,7 @@ class HomeController extends Controller
        $category = Category::all();
        $data = Category::where('slug',$slug)->first();
        $prod = Product::where('slug',$slug)->first();
+       $comment = Comment::where('com_slug',$slug)->get();
 
        // dd($data);
       // $pro = Product::where('slug',$slug)->first();
@@ -119,13 +121,26 @@ class HomeController extends Controller
           return view('home.shop_page_view',compact('category','data'));
        }else if ($prod) {
         //có slug sản phẩm thì lấy
-        return view('home.pro_detail',compact('category','prod'));
+        return view('home.pro_detail',compact('category','prod','comment'));
        }else{
         //không có cả 2 thì chuyển về 404
         return view('home.404');
        }
 
      
+    }
+
+    public function comment(Request $request,$slug){
+      $comment = Comment::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'content' => $request->content,
+        'com_slug' => $slug,
+      ]);
+      // dd($request->all());
+      return redirect()->back();
+
+      // echo $slug;
     }
 
     public function shop_page_left(){
@@ -141,6 +156,8 @@ class HomeController extends Controller
         return view('home.contact');
 
     }
+
+    
     public function post_contact(request $request){
        
       if (Mail::send('email.contact',[

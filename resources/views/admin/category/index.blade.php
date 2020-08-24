@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title','Category')
 @section('content')
-<form action="" method="POST" class="form-inline" role="form">
+<form action="{{route('search_cat')}}" method="GET" class="form-inline" role="form">
 			<div class="form-group">
 				<label class="sr-only" for="">label</label>
-				<input type="email" class="form-control" id="" placeholder="Search....">
+				<input type="search" name = "search" class="form-control" id="" placeholder="Search....">
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 			<span><a href="{{route('category.create')}}" class="btn btn-primary  glyphicon glyphicon-plus"></a></span>
@@ -14,6 +14,7 @@
 		<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		{{Session::get('success')}}
+		</div>
 		@endif
 		
 		<thead>
@@ -31,7 +32,7 @@
 				<td>{{$cat->id}}</td>
 				<td>{{$cat->name}}</td>
 				<td>{{$cat->status}}</td>
-				<td>{{$cat->created_at}}</td>
+				<td>{{date('d/m/Y',strTotime($cat->created_at))}}</td>
 				<td>
 
 					<form action="{{ route('category.destroy', $cat->id) }}" method="POST">

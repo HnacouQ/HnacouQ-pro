@@ -19,6 +19,7 @@ class CategoryController extends Controller
     {
         $data = Category::orderBy('id','DESC')->paginate(5);
        return view('admin.category.index',compact('data'));
+       // dd($data);
 
     }
 
@@ -122,7 +123,7 @@ class CategoryController extends Controller
     {
 
         $data = Category::find($id);
-        $name = Category::find($id)->name;
+        
         $data->delete();
         if ($data) {
             # code...
@@ -132,4 +133,11 @@ class CategoryController extends Controller
             return redirect()->back()->with('success','Xóa Thất Bại!!!');
         }
     }
+     public function search(Request $request){
+        $search = $request->get('search');
+
+         $data = Category::where('name','like','%'.$search.'%')->paginate(5);
+        return view('admin.category.index',compact('data'));
+        
+    }  
 }

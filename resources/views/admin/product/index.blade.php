@@ -2,10 +2,11 @@
 @section('title','Product')
 @section('content')
 
-<form action="" method="POST" class="form-inline" role="form">
+<form action="{{route('search_pro')}}" method="GET" class="form-inline" role="form">
 			<div class="form-group">
-				<label class="sr-only" for="">label</label>
-				<input type="email" class="form-control" id="" placeholder="Search....">
+
+				<label class="sr-only"  for="">label</label>
+				<input type="search" name = "search" class="form-control" id="" placeholder="Search....">
 			</div>
 			<button type="submit" class="btn btn-primary">Search</button>
 			<span><a href="{{route('product.create')}}" class="btn btn-primary glyphicon glyphicon-plus "></a></span>
@@ -36,7 +37,7 @@
 				<td>{{$pro->name}}</td>
 				
 				<td>{{$pro->status}}</td>
-				<td>{{$pro->created_at}}</td>
+				<td>{{date('d/m/Y',strTotime($pro->created_at))}}</td>
 				<td>
 
 					<form action="{{ route('product.destroy', $pro->id) }}" method="POST">

@@ -72,6 +72,7 @@
 			</div>
 			<div class="form-group">
 				<label for="">Ảnh</label>
+				<input type="hidden" name="image" value="{{$data->image}}">
 				<input type="file" name="upload" class="form-control" id="" >
 				 <img src="{{url('')}}/public/uploads/product/{{$data->image}}" width="60px" alt="">{{$data->image}}
 			</div>

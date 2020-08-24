@@ -26,7 +26,7 @@ class CustomerMiddleware
               return $next($request);
         }
 
-        return redirect()->route('home_login')->with('noti','Bạn cần đăng nhập trước khi thanh toán...');
+        return redirect()->route('home_login')->with('noti','Chức năng này yêu cầu đăng nhập!');
       
     }
 }

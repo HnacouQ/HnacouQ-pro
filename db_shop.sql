@@ -81,9 +81,12 @@ INSERT INTO `category` (`id`, `name`, `status`, `slug`, `parent_id`, `created_at
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+
   `content` text COLLATE utf8_unicode_ci,
-  `created_date` date DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  
+  `com_slug` varchar(150) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
