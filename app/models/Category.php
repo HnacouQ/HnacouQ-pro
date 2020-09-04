@@ -15,6 +15,6 @@ class Category extends Model
 
       // 1 category có n product => hasMany
     public function products(){
-    	return $this->hasMany(Product::class,'category_id','id')->orderBy('id','DESC')->limit(5);
+    	return $this->hasMany(Product::class,'category_id','id')->orderBy('id','DESC');
     }
 }

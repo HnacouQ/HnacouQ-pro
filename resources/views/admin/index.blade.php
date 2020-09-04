@@ -8,7 +8,7 @@
 		<!-- small box -->
 		<div class="small-box bg-aqua">
 		  <div class="inner text-center">
-			<h3>{{ $total_pro }}</h3>
+			<h3>{{ $product_count }}</h3>
 
 			<p>tổng sản phẩm</p>
 		  </div>
@@ -23,7 +23,7 @@
 		<!-- small box -->
 		<div class="small-box bg-green">
 		  <div class="inner text-center">
-			<h3>{{ $total_order }}</h3>
+			<h3>{{ $order_count }}</h3>
 
 			<p>Tổng đơn hàng</p>
 		  </div>
@@ -38,7 +38,7 @@
 		<!-- small box -->
 		<div class="small-box bg-yellow">
 		  <div class="inner text-center">
-			<h3>{{ $total_user }}</h3>
+			<h3>{{ $user_count }}</h3>
 
 			<p>Tổng người dùng</p>
 		  </div>
@@ -53,7 +53,7 @@
 		<!-- small box -->
 		<div class="small-box bg-red">
 		  <div class="inner text-center">
-			<h3>{{ $total_customer }}</h3>
+			<h3>{{ $cus_count }}</h3>
 
 			<p>Tổng khách hàng</p>
 		  </div>
@@ -97,10 +97,12 @@
 				@endif
 				@if($data->status == 0)
 				<td>chưa giao hàng</td>
-				@else
+				@elseif($data->status == 1)
 				<td>Đã giao hàng</td>
+				@elseif($data->status == 2)
+				<td>Đơn hủy</td>
 				@endif
-				<td>{{$data->created_at}}</td>
+				<td>{{date('d/m/Y H:i',strTotime($data->created_at))}}</td>
 				<td>
 					<a href="{{route('order_detail',['id' => $data->id])}}" class="btn btn-sm btn-warning glyphicon glyphicon-eye-open"></a>
 				</td>

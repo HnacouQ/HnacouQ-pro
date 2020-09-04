@@ -9,24 +9,24 @@
 				<div class="form-group">
 				<label for="">Tên banner</label>
 				<input type="text" name="name" class="form-control" id="name">
+				@error('name')
+				<small class="help-block">{{$message}}</small>
+				@enderror
 			</div>
-			@if($errors->has('name'))
-			{{$errors->first('name')}}
-			@endif
 			<div class="form-group">
 				<label for="">Loại Banner</label>
 				<input type="number" name="type" class="form-control">
+				@error('type')
+				<small class="help-block">{{$message}}</small>
+				@enderror
 			</div>
-			@if($errors->has('type'))
-			{{$errors->first('type')}}
-			@endif
 			<div class="form-group">
 				<label for="">Ảnh</label>
 				<input type="file" name="upload" class="form-control" id="">
+				@error('upload')
+				<small class="help-block">{{$message}}</small>
+				@enderror
 			</div>
-			@if($errors->has('upload'))
-			{{$errors->first('upload')}}
-			@endif
 		</div>
 			</div>
 	

@@ -39,6 +39,10 @@
 			
 			session(['cart' => $this->items]);
 
+			// dd(session('cart'));
+
+			
+
 
 		}
 

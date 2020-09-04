@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\Category\addReq;
+use App\Http\Requests\Category\editReq;
 use App\Http\Controllers\Controller;
 
 
@@ -31,7 +33,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        $category = Category::where('parent_id',0)->get();
+        $category = Category::get();
 
          return view('admin.category.create',compact('category'));
 
@@ -44,20 +46,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addReq $request)
     {
-
-        //validate
-        $this->validate($request,[
-            'name' => 'required|unique:category,name',
-            'slug' => 'required|unique:category,slug',
-            
-        ],[
-            'name.required' => 'Tên danh mục không được để trống!!!',
-            'name.unique' => 'danh mục đã tồn tại!!!',
-            'slug.required' => 'slug không được để trống!!!',
-            'slug.unique' => 'slug đã tồn tại!!!',
-        ]);
         $data =  Category::create($request->all());
 
         if ($data) {
@@ -104,7 +94,7 @@ class CategoryController extends Controller
      * @param  \App\models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request)
+    public function update($id,editReq $request)
     {
         //
         $request -> offsetUnset('_token');
@@ -123,16 +113,25 @@ class CategoryController extends Controller
     {
 
         $data = Category::find($id);
+        $sp = $data->products->count();
+
+        if($sp > 0){
+            return redirect()->back()->with('error','Không thể xóa danh mục đã có sản phẩm!!!');
+        }else{
+            $data->delete();
+            if ($data) {
+                # code...
+                return redirect()->back()->with('success','Xóa thành Công!!!');
+            }
+            else{
+                return redirect()->back()->with('success','Xóa Thất Bại!!!');
+            }
+        }
         
-        $data->delete();
-        if ($data) {
-            # code...
-            return redirect()->back()->with('success','Xóa thành Công!!!');
-        }
-        else{
-            return redirect()->back()->with('success','Xóa Thất Bại!!!');
-        }
+        
     }
+
+
      public function search(Request $request){
         $search = $request->get('search');
 

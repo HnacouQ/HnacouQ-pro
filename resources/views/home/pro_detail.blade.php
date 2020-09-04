@@ -6,8 +6,8 @@
 				<div class="banner-content">
 					<img src="{{url('public/home')}}/images/banners/banner2.png" alt="">
 					<div class="banner-content-detail text-center">
-						<h1>CART PAGE</h1>
-						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> Cart Page</span>
+						<h1>SHOP PAGE</h1>
+						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;">SHOP PAGE</span>
 					</div>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 										</div>
 										<div class="form-group">
 											<label for="" class="col-md-4">Share :</label>	
-											<li> <a href="#"><img src="images/icons/icon-ft-1.png" alt=""></a> <a href="#"><img src="images/icons/icon-ft-2.png" alt=""></a><a href="#"><img src="images/icons/icon-ft-3.png" alt=""></a><a href=""><img src="images/icons/icon-ft-4.png" alt=""></a></li>
+											<li> <a href="#"><img src="{{url('public/home')}}/images/icons/icon-ft-1.png" alt=""></a> <a href="#"><img src="{{url('public/home')}}/images/icons/icon-ft-2.png" alt=""></a><a href="#"><img src="{{url('public/home')}}/images/icons/icon-ft-3.png" alt=""></a><a href=""><img src="{{url('public/home')}}/images/icons/icon-ft-4.png" alt=""></a></li>
 										</div>
 								</form>
 							</div>
@@ -103,7 +103,7 @@
 											<div class="comment">
 												<div class="media">
 													<a class="pull-left" href="#">
-														<img class="media-object img-circle" src="https://www.gravatar.com/avatar/{{md5($com->email)}}" alt="Image">
+														<img class="media-object img-circle" src="https://www.gravatar.com/avatar/{{md5($com->email)}}" alt="Image" width="40px">
 													</a>
 													<div class="media-body">
 														<h4 class="media-heading">{{$com->name}}</h4><span> | {{date('d/m/Y H:i',strTotime($com->created_at))}}</span>

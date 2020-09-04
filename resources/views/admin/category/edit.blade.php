@@ -8,11 +8,19 @@
 	<div class="form-group">
 		<label for="">Tên Danh Mục</label>
 		<input type="text" class="form-control" name="name" value="{{$data->name}}" id="name" placeholder="Input field">
+		@error('name')
+		<small class="help-block">{{$message}}</small>
+		@enderror
 	</div>
+	
 	<div class="form-group">
 		<label for="">Tên Slug</label>
 		<input type="text" class="form-control" name="slug" value="{{$data->slug}}" id="slug" placeholder="Input field">
+		@error('slug')
+		<small class="help-block">{{$message}}</small>
+		@enderror
 	</div>
+	
 	<div class="form-group">
 		<label for="">Trạng Thái</label>
 		<div class="radio">

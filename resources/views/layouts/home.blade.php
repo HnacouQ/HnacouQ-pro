@@ -12,7 +12,10 @@
 	<link rel="stylesheet" href="{{url('public/home')}}/css/style.css">
 </head>
 <body>
-	<div class="page">
+	<div class="page preloading">
+		<div id="preload" class="preload-container text-center">
+	        <span class="glyphicon glyphicon-refresh preload-icon rotating"></span>
+	    </div>
 		<header>
 			<div class="container">
 				<div class="row">
@@ -49,6 +52,10 @@
 										<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-transform: capitalize">{{Auth::guard('cus')->user()->name}}<b class="caret"></b></a>
 										<ul class="dropdown-menu" >
+											
+											<li><a href="" style="text-transform: capitalize">Profile</a></li>
+											<li><a href="{{route('my_order',Auth::guard('cus')->user()->id)}}" style="text-transform: capitalize">Đơn hàng của tôi</a></li>
+
 											<li><a href="{{route('home_logout')}}" style="text-transform: capitalize">đăng xuất</a></li>
 										</ul>
 										</li>
@@ -59,6 +66,7 @@
 											<li><a href="{{route('home_login')}}" style="text-transform: capitalize">đăng nhập</a></li>
 											
 											<li><a href="{{route('register')}}" style="text-transform: capitalize">đăng ký</a></li>
+
 										</ul>
 										</li>
 										
@@ -66,22 +74,25 @@
 									</li>
 									<li>
 										<a data-toggle="modal" href="#modal-id"><img src="{{url('public/home')}}/images/icons/search.jpg" alt=""></a>
-										<div class="modal fade" id="modal-id">{{url('public/home')}}/
+										<div class="modal fade" id="modal-id">
 											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<h4 class="modal-title">Modal title</h4>
-													</div>
-													<div class="modal-body">
-														
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-														<button type="button" class="btn btn-primary">Save changes</button>
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title">Tìm kiếm</h4>
+														</div>
+														<div class="modal-body">
+															<form action="{{route('home_search')}}" method="GET" class=" text-center" role="form" >
+															
+																<div class="form-group ">
+																	<input type="text" name="search" class="form-control" id="" placeholder="Nhập từ khóa...">
+																	<span class=""></span>
+																</div>
+																<button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
+															</form>
+														</div>								
 													</div>
 												</div>
-											</div>
 										</div>
 									</li>
 									
@@ -92,7 +103,7 @@
 									</li>
 									<li class="head-cart">
 										<a href="{{route('cart')}}"><img src="{{url('public/home')}}/images/icons/cart_icon.png" alt="">
-										<span class="icon-number">{{$carts->total_quantity}}</span>
+										<span class="icon-number" id="list_cart">{{$carts->total_quantity}}</span>
 										</a>
 										
 									</li>
@@ -182,8 +193,21 @@
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/jquery.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/docs/assets/vendors/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/myJs.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/toastr.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 	<script type="text/javascript">
+
+
+		$(window).load(function() {
+		    $('body').removeClass('preloading');
+		    $('#preload').delay(500).fadeOut('fast');
+		});
+
 		$('.owl-carousel').owlCarousel({
 			loop:true,
 			autoplay:true,
@@ -201,7 +225,8 @@
 		        }
 		    }
 
-		})
+		});
+		
 	</script>
 </body>
 </html>

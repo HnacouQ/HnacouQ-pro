@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Banner')
+@section('title','Users')
 @section('content')
 <form action="{{route('search_user')}}" method="GET" class="form-inline" role="form">
 			<div class="form-group">

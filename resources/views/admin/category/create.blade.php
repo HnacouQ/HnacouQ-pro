@@ -6,18 +6,20 @@
 	@csrf
 	<div class="form-group">
 		<label for="">Tên Danh Mục</label>
-		<input type="text" class="form-control" name="name" id="name" >
+	<input type="text" class="form-control" name="name" id="name" value="{{old('name')}}" >
+		@error('name')
+		<small class="help-block">{{$message}}</small>
+		@enderror
 	</div>
-	@if($errors->has('name'))
-		{{$errors->first('name')}}
-		@endif
+	
 	<div class="form-group">
 		<label for="">Slug</label>
-		<input type="text" class="form-control" name="slug" id="slug" >
+		<input type="text" class="form-control" name="slug" id="slug" value="{{old('slug')}}" >
+		@error('slug')
+		<small class="help-block">{{$message}}</small>
+		@enderror
 	</div>
-	@if($errors->has('slug'))
-		{{$errors->first('slug')}}
-		@endif
+	
 	<div class="form-group">
 		<label for="">Parent Category</label>
 		<select name="parent_id" id="input" class="form-control" required="required">

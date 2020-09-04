@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\models\Banner;
 use App\models\Customer;
 use App\models\Category;
+use App\models\Order;
+use App\models\OrderDetail;
 use App\models\Comment;
-
+use App\helper\Views;
+use DB;
 use Auth;
 use Mail;
 
@@ -22,8 +25,8 @@ class HomeController extends Controller
     public function index()
     {	
        
-    	$all = Product::orderBy('id','DESC')->limit(8)->get();
-    	$men = Product::where('category_id',1)->get();
+    	$all = Product::orderBy('id','DESC')->limit(4)->get();
+    	$men = Product::orderBy('views','DESC')->limit(8)->get();
     	$women = Product::where('category_id',2)->get();
     	$asso = Product::where('category_id',3)->get();
         $banner = Banner::where('type',1)->get();
@@ -108,28 +111,86 @@ class HomeController extends Controller
       return view('home.shop',compact('product'));
     }
 
+
+
     public function view($slug){
        $category = Category::all();
-       $data = Category::where('slug',$slug)->first();
-       $prod = Product::where('slug',$slug)->first();
-       $comment = Comment::where('com_slug',$slug)->get();
-
-       // dd($data);
+       // $data = Category::where('slug',$slug)->first();
+       $data = DB::table('category')
+        ->join('product', 'category.id', '=', 'product.category_id')
+        ->select('category.id as cat_id','category.slug as cat_slug','product.name','product.image','product.id','product.slug','product.price','product.sale_price')
+        ->where('category.slug',$slug)
+        ->paginate(4);
+        // dd($data);
+       // dd($prod);
       // $pro = Product::where('slug',$slug)->first();
        if ($data) {
          //có slug của danh mục thì lấy
           return view('home.shop_page_view',compact('category','data'));
-       }else if ($prod) {
-        //có slug sản phẩm thì lấy
-        return view('home.pro_detail',compact('category','prod','comment'));
        }else{
-        //không có cả 2 thì chuyển về 404
         return view('home.404');
        }
 
      
     }
 
+
+    //view product_detail
+    public function pro_detail($slug){
+
+      
+
+      $category = Category::all();
+      $prod = Product::where('slug',$slug)->first();
+      $comment = Comment::where('com_slug',$slug)->get();
+      if ($prod) {
+        $view = $prod->views;
+        Product::where('slug',$slug)->update([
+        'views' => $view + 1,
+        ]);
+        return view('home.pro_detail',compact('category','prod','comment'));
+       }else{
+        return view('home.404');
+       }
+    }
+
+
+
+    public function home_search(Request $request){
+        $search = $request->get('search');
+        $count_pro = Product::where('name','like','%'.$search.'%')->get();
+        $product = Product::where('name','like','%'.$search.'%')->paginate(3);
+        
+        return view('home.search_pro',compact('product','count_pro'));
+    }
+
+    public function my_order($id){
+
+      $my_or = Order::where('customer_id',$id)->orderBy('created_at','desc')->paginate(5);
+
+      return view('home.my_order',compact('my_or'));
+    }
+
+    public function home_or_detail($id){
+      $ord = Order::find($id);
+        // dd($ord->name);
+        $or_de = OrderDetail::where(['order_id'=> $id])->get();
+        // dd($or_de);
+        return view('home.my_order_detail',compact('ord','or_de'));
+    }
+
+    public function del_order($id){
+      $data = Order::find($id);
+      $data->update([
+        'status' => 2,
+      ]);
+      // dd($data->customer_id);
+
+      return redirect()->route('my_order',['id'=>$data->customer_id]);
+    }
+
+    
+    
     public function comment(Request $request,$slug){
       $comment = Comment::create([
         'name' => $request->name,
@@ -186,5 +247,9 @@ class HomeController extends Controller
         $mess->subject('Thư test gửi mail');
       });
     }
+
+
+
+    
 
 }

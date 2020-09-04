@@ -34,10 +34,10 @@ class CheckoutController extends Controller
 
         // lấy thông tin đưa vào bảng order...
         if ( $order = Order::create([
-            'name' => $name,
-            'phone' => $phone,
-            'email' => $email,
-            'address' => $address,
+            'name' => $Request->name,
+            'phone' => $Request->phone,
+            'email' => $Request->email,
+            'address' => $Request->address,
             'customer_id'=> $cus_id,
             'order_note' => $Request->order_note,
             'payment_method'=> $Request->payment_method

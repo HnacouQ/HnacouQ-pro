@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\models\Banner;
 use Illuminate\Http\Request;
 use App\models\Category;
+use App\Http\Requests\Banner\addReq;
+use App\Http\Requests\Banner\editReq;
 
 class BannerController extends Controller
 {
@@ -39,7 +41,7 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addReq $request)
     {
         //validate
 
@@ -96,7 +98,7 @@ class BannerController extends Controller
      * @param  \App\models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(editReq $request, $id)
     {
         //
         $data = Banner::find($id);
@@ -109,6 +111,8 @@ class BannerController extends Controller
             $img_name = time().'-'.$request->upload->getClientOriginalName();
             $request->upload->move(public_path('uploads/banner'),$img_name);
             $request->merge(['image' =>  $img_name]);
+        }else{
+            $img_name = time().'-'.$request->image;
         }
 
       

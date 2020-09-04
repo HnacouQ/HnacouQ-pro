@@ -1,5 +1,9 @@
 @extends('layouts.home')
 
+<!-- @section('js')
+    <script type="text/javascript" src="{{url('public/home/js/style.js')}}"></script>
+@stop() -->
+
 @section('content')
     <!-- begin-banner -->
         <div class="banner">
@@ -39,19 +43,26 @@
                     <!--begin home-support -->
                     <div class="main-content-home-sp">
                         <div class="col-md-4">
-                            <img src="{{url('public/home')}}/images/icons/Icon-sp1.png" alt="">
-                            <h4 class="area-heading">Free Shipping & Return</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
+                            <div class="text-center">
+                                <img src="{{url('public/home')}}/images/icons/Icon-sp1.png" alt="">
+                                <h4 class="area-heading">Free Shipping & Return</h4>   
+                            </div>
+                            
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
                         </div>
                         <div class="col-md-4">
-                            <img src="{{url('public/home')}}/images/icons/Icon-sp2.png" alt="">
-                            <h4 class="area-heading" >30 Days Return</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
+                           <div class="text-center">
+                                <img src="{{url('public/home')}}/images/icons/Icon-sp2.png" alt="">
+                                <h4 class="area-heading" >30 Days Return</h4>
+                           </div>
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
                         </div>
                         <div class="col-md-4">
-                            <img src="{{url('public/home')}}/images/icons/Icon-sp3.png" alt="">
-                            <h4 class="area-heading">24/7 Strong Support</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
+                            <div class="text-center">
+                                <img src="{{url('public/home')}}/images/icons/Icon-sp3.png" alt="">
+                                <h4 class="area-heading">24/7 Strong Support</h4>
+                            </div>
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
                         </div>
                     </div>
                     <!-- end home-support -->
@@ -131,7 +142,7 @@
                                             <a href="#all" aria-controls="all" role="tab" data-toggle="tab">NEW</a>
                                         </li>
                                         <li role="presentation" class="active pro-tabs-item">
-                                            <a href="#popular" aria-controls="tab" role="tab" data-toggle="tab">MEN</a>
+                                            <a href="#popular" aria-controls="tab" role="tab" data-toggle="tab">TOP VIEWS</a>
                                         </li>
                                         <li role="presentation" class="pro-tabs-item">
                                             <a href="#trending" aria-controls="tab" role="tab" data-toggle="tab">WOMEN</a>
@@ -175,10 +186,10 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href="{{route('view',['slug' => $al->slug])}}"><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('pro_detail',['slug' => $al->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('cart.add',['id'=>$al->id])}}"><i class="fas fa-shopping-cart"></i></a>
+                                                                        <a href="{{route('cart.add',['id'=>$al->id])}}" class="add_cart" data-id="{{$al->id}}"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href=""><i class="far fa-heart"></i></a>
@@ -224,10 +235,10 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href="{{route('view',['slug' => $mens->slug])}}"><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('pro_detail',['slug' => $mens->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('cart.add',['id'=>$mens->id])}}"><i class="fas fa-shopping-cart"></i></a>
+                                                                        <a href="{{route('cart.add',['id'=>$mens->id])}}" class="add_cart" data-id="{{$mens->id}}"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href=""><i class="far fa-heart"></i></a>
@@ -273,10 +284,10 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href="{{route('view',['slug' => $wo->slug])}}"><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('pro_detail',['slug' => $wo->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('cart.add',['id'=>$wo->id])}}"><i class="fas fa-shopping-cart"></i></a>
+                                                                        <a href="{{route('cart.add',['id'=>$wo->id])}}" class="add_cart" data-id="{{$wo->id}}"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href=""><i class="far fa-heart"></i></a>
@@ -322,10 +333,10 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href="{{route('view',['slug' => $as->slug])}}"><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('pro_detail',['slug' => $as->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('cart.add',['id'=>$as->id])}}"><i class="fas fa-shopping-cart"></i></a>
+                                                                        <a href="{{route('cart.add',['id'=>$as->id])}}" class="add_cart" data-id="{{$as->id}}"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href=""><i class="far fa-heart"></i></a>

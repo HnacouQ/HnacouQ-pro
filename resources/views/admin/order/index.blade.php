@@ -1,11 +1,12 @@
 @extends('layouts.admin')
 @section('title','Danh Sách Đơn Hàng')
 @section('content')
-<form action="" method="POST" class="form-inline" role="form">
+<form action="" method="GET" class="form-inline" role="form">
+		
 			<div class="form-group">
 				<label class="sr-only" for="">label</label>
-				<input type="email" class="form-control" id="" placeholder="Search....">
-				<input type="email" class="form-control" id="" placeholder="Search....">
+				<input type="date" class="form-control" name="date_from" id="">
+				<input type="date" class="form-control" name="date_to" id="">
 			</div>
 			<button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
 		</form>
@@ -39,16 +40,21 @@
 				@endif
 				@if($data->status == 0)
 				<td>chưa giao hàng</td>
-				@else
+				@elseif($data->status == 1)
 				<td>Đã giao hàng</td>
+				@elseif($data->status == 2)
+				<td>Đã hủy đơn hàng</td>
 				@endif
 				<td>{{date('d/m/Y H:i',strTotime($data->created_at))}}</td>
 				<td>
 					<a href="{{route('order_detail',['id' => $data->id])}}" class="btn btn-sm btn-warning glyphicon glyphicon-eye-open"></a>
+					@if($data->status === 0)
 					<a href="{{route('update_order',['id' => $data->id])}}" class="btn btn-sm btn-primary glyphicon glyphicon-pencil"></a>
+					@endif
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>	
+	{{$or->links()}}
 @stop()

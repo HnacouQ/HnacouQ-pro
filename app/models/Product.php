@@ -8,7 +8,17 @@ class Product extends Model
 {
     //
     protected $table = 'product';
-    protected $fillable = ['name','image','price','sale_price','content','slug','category_id','status'];
+    protected $fillable = [
+        'name',
+        'image',
+        'price',
+        'sale_price',
+        'content',
+        'slug',
+        'category_id',
+        'status',
+        'view',
+    ];
 
     // 1 product có 1 category => hasOne
     public function cat(){

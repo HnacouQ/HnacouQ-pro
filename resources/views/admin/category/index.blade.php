@@ -6,14 +6,20 @@
 				<label class="sr-only" for="">label</label>
 				<input type="search" name = "search" class="form-control" id="" placeholder="Search....">
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">Tìm kiếm</button>
 			<span><a href="{{route('category.create')}}" class="btn btn-primary  glyphicon glyphicon-plus"></a></span>
 		</form>
 	<table class="table table-hover">
 		@if(Session::has('success'))
-		<div class="alert alert-success">
+		<div class="alert alert-success text-center">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		{{Session::get('success')}}
+		</div>
+		@endif
+		@if(Session::has('error'))
+		<div class="alert alert-danger text-center">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		{{Session::get('error')}}
 		</div>
 		@endif
 		

@@ -6,8 +6,8 @@
 				<div class="banner-content">
 					<img src="{{url('public/home')}}/images/banners/banner2.png" alt="">
 					<div class="banner-content-detail text-center">
-						<h1>CART PAGE</h1>
-						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> Cart Page</span>
+						<h1>LOGIN PAGE</h1>
+						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> LOGIN PAGE</span>
 					</div>
 				</div>
 			</div>

@@ -28,10 +28,16 @@
 							<li>
 								<a href="{{route('shop_page_left')}}"><img src="{{url('public/home')}}/images/icons/icon-clearfix1.png" alt=""></a>
 							</li>
+							<li>
+
+							</li>
 						</ul>
 					</div>
+					
 					<div class="col-md-10 col-md-offset-1">
-						<div class="pro-item">
+						
+						
+							<div class="pro-item">
 							@foreach($product as $pro)
 							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="thumbnail my-pro">

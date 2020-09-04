@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\models\Product;
 use App\models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\Product\addReq;
+use App\Http\Requests\Product\editReq;
 use App\Http\Controllers\Controller;
 
 
@@ -44,33 +46,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addReq $request)
     {
-        //validate
-        $this->validate($request,[
-            'name' => 'required|unique:product,name',
-            'slug' => 'required',
-            'content' => 'required',
-            'category_id' => 'required',
-            'price' => 'required|numeric',
-            'sale_price' => 'required|numeric',
-            'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ],[
-            'name.required' => 'tên sản phẩm không được để trống!!',
-            'name.unique' => 'tên sản phẩm đã tồn tại!!',
-            'slug.required' => 'slug không được để trống!!',
-            'content.required' => 'Mô tả không được để trống!!',
-            'category_id.required' => 'tên danh mục không được để trống!!',
-            'price.required' => 'Giá sản phẩm không được để trống!!',
-            'price.numeric' => 'Bạn nhập sai định dạng.',
-            'sale_price.required' => 'Giá khuyến mãi không được để trống!!',
-            'sale_price.numeric' => 'Bạn nhập sai định dạng.',
-            'upload.required' => 'Ảnh Không Được Để Trống!',
-            'upload.image' => 'File tải lên không phải định dạng ảnh!',
-            'upload.mimes' => 'File tải lên phải có đuôi: jpeg, png, jpg, gif',
-            'upload.max' => 'File tải lên không đc quá 2MB!',
-
-        ]);
         //upload
         if ($request->has('upload')) {
             # code...
@@ -91,6 +68,7 @@ class ProductController extends Controller
          }
 
     }
+    
 
     /**
      * Display the specified resource.
@@ -102,8 +80,14 @@ class ProductController extends Controller
     {
         //
         $data = Product::find($id);
+
+        if(is_null($data)){
+            return redirect()->route('product.index')->with('success','Dữ liệu này không có trong CSDL');
          // dd($data->image);
-        return view('admin.product.show',compact('data'));
+        }else{
+            return view('admin.product.show',compact('data'));
+        }
+        
       
     }
 
@@ -129,36 +113,8 @@ class ProductController extends Controller
      * @param  \App\models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(editReq $request, $id)
     {
-
-
-        //validate
-
-        $this->validate($request,[
-            'name' => 'required',
-            'slug' => 'required',
-            'content' => 'required',
-            'category_id' => 'required',
-            'price' => 'required|numeric',
-            'sale_price' => 'required|numeric',
-            'upload' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ],[
-            'name.required' => 'tên sản phẩm không được để trống!!',
-            
-            'slug.required' => 'slug không được để trống!!',
-          
-            'category_id.required' => 'tên danh mục không được để trống!!',
-            'price.required' => 'Giá sản phẩm không được để trống!!',
-            'price.numeric' => 'Bạn nhập sai định dạng.',
-            'sale_price.required' => 'Giá khuyến mãi không được để trống!!',
-            'sale_price.numeric' => 'Bạn nhập sai định dạng.',
-            'upload.image' => 'File tải lên không phải định dạng ảnh!',
-            'upload.mimes' => 'File tải lên phải có đuôi: jpeg, png, jpg, gif',
-            'upload.max' => 'File tải lên không đc quá 2MB!',
-
-        ]);
-
         $data = Product::find($id);
         $request -> offsetUnset('_token');
         $request -> offsetUnset('_method');

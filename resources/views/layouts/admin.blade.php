@@ -200,8 +200,9 @@
           <a href="{{route('list_order')}}">
             <i class="fa fa-book" aria-hidden="true"></i><span>DS Đơn hàng</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">{{$or_news_count}}</small>
-              <small class="label pull-right bg-blue">{{$order_count}}</small>
+               <small class="label pull-right bg-green">{{$order_success_count}}</small>
+              <small class="label pull-right bg-red">{{$or_del_count}}</small>
+              <small class="label pull-right bg-blue">{{$or_process_count}}</small>
             </span>
           </a>
         </li>

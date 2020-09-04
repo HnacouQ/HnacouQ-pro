@@ -6,8 +6,8 @@
 				<div class="banner-content">
 					<img src="{{url('public/home')}}/images/banners/banner2.png" alt="">
 					<div class="banner-content-detail text-center">
-						<h1>CART PAGE</h1>
-						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> Cart Page</span>
+						<h1>SHOP PAGE</h1>
+						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> Shop page</span>
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 							</div>
 							<div class="col-md-8">
 								<div class="pro-item">
-									@foreach($data->products as $pro)
+									@foreach($data as $pro)
 									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 										<div class="thumbnail my-pro">
 											
@@ -87,7 +87,7 @@
 												<div class="pro-effect-item">
 													<ul>
 														<li>
-															<a href="{{route('view',['slug' => $pro->slug])}}"><i class="fas fa-search"></i></a>
+															<a href="{{route('pro_detail',['slug' => $pro->slug])}}"><i class="fas fa-search"></i></a>
 														</li>
 														<li>
 															<a href="{{route('cart.add',['id'=>$pro->id])}}"><i class="fas fa-shopping-cart"></i></a>
@@ -107,13 +107,7 @@
 					</div>
 					<div class="col-md-10 col-md-offset-1 text-center pagination-shop">
 						<ul class="pagination">
-							<li><a href="#" class="">&laquo; Previos</a></li>
-							<li class=""><a href="#" >1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">Next &raquo; </a></li>
+							{{$data->links()}}
 						</ul>
 					</div>
 				</div>
