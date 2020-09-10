@@ -34,22 +34,22 @@ class addReq extends FormRequest
             'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
-    public function messages(){
-        return [
-            'name.required' => 'tên sản phẩm không được để trống!!',
-            'name.unique' => 'tên sản phẩm đã tồn tại!!',
-            'slug.required' => 'slug không được để trống!!',
-            'content.required' => 'Mô tả không được để trống!!',
-            'category_id.required' => 'tên danh mục không được để trống!!',
-            'price.required' => 'Giá sản phẩm không được để trống!!',
-            'price.numeric' => 'Bạn nhập sai định dạng.',
-            'sale_price.required' => 'Giá khuyến mãi không được để trống!!',
-            'sale_price.numeric' => 'Bạn nhập sai định dạng.',
-            'sale_price.lt' => 'Giá khuyến mãi không được lớn hơn giá gốc',
-            'upload.required' => 'Ảnh Không Được Để Trống!',
-            'upload.image' => 'File tải lên không phải định dạng ảnh!',
-            'upload.mimes' => 'File tải lên phải có đuôi: jpeg, png, jpg, gif',
-            'upload.max' => 'File tải lên không đc quá 2MB!',
-        ];
-    }
+    // public function messages(){
+    //     return [
+    //         'name.required' => 'tên sản phẩm không được để trống!!',
+    //         'name.unique' => 'tên sản phẩm đã tồn tại!!',
+    //         'slug.required' => 'slug không được để trống!!',
+    //         'content.required' => 'Mô tả không được để trống!!',
+    //         'category_id.required' => 'tên danh mục không được để trống!!',
+    //         'price.required' => 'Giá sản phẩm không được để trống!!',
+    //         'price.numeric' => 'Bạn nhập sai định dạng.',
+    //         'sale_price.required' => 'Giá khuyến mãi không được để trống!!',
+    //         'sale_price.numeric' => 'Bạn nhập sai định dạng.',
+    //         'sale_price.lt' => 'Giá khuyến mãi không được lớn hơn giá gốc',
+    //         'upload.required' => 'Ảnh Không Được Để Trống!',
+    //         'upload.image' => 'File tải lên không phải định dạng ảnh!',
+    //         'upload.mimes' => 'File tải lên phải có đuôi: jpeg, png, jpg, gif',
+    //         'upload.max' => 'File tải lên không đc quá 2MB!',
+    //     ];
+    // }
 }

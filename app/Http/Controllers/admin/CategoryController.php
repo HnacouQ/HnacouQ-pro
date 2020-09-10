@@ -52,9 +52,9 @@ class CategoryController extends Controller
 
         if ($data) {
             # code...
-            return redirect()->route('category.index')->with('success','Thêm mới thành Công!!!');
+            return redirect()->route('category.index')->with('success','Add Product Successfully!!!');
         }else{
-            return redirect()->route('category.index')->with('error','Thêm mới thất bại!!!');
+            return redirect()->route('category.index')->with('error','Add Product Fail!!!');
         }
 
 
@@ -84,7 +84,11 @@ class CategoryController extends Controller
     {
         //
         $data = Category::find($id);
+        if($data){  
          return view('admin.category.edit',compact('data'));
+        }else{
+            return redirect()->route('category.index')->with('error','Not Found Product');
+        }
     }
 
     /**
@@ -99,8 +103,13 @@ class CategoryController extends Controller
         //
         $request -> offsetUnset('_token');
         $request -> offsetUnset('_method');
-        Category::where(['id'=>$id])->update($request->all());
-        return redirect()->route('category.index');
+        $success = Category::where(['id'=>$id])->update($request->all());
+        
+        if($success){
+            return redirect()->route('category.index')->with('success','Update Product Successfully');
+        }else{
+            return redirect()->route('category.index')->with('success','Update Product Fail');
+        }
     }
 
     /**
@@ -113,18 +122,19 @@ class CategoryController extends Controller
     {
 
         $data = Category::find($id);
+
         $sp = $data->products->count();
 
         if($sp > 0){
-            return redirect()->back()->with('error','Không thể xóa danh mục đã có sản phẩm!!!');
+            return redirect()->back()->with('error','Can Not Delete Category had Product!!!');
         }else{
             $data->delete();
             if ($data) {
                 # code...
-                return redirect()->back()->with('success','Xóa thành Công!!!');
+                return redirect()->back()->with('success','Delete Category Successfully!!!');
             }
             else{
-                return redirect()->back()->with('success','Xóa Thất Bại!!!');
+                return redirect()->back()->with('success','Delete Category Fail!!!');
             }
         }
         
@@ -132,10 +142,10 @@ class CategoryController extends Controller
     }
 
 
-     public function search(Request $request){
+    public function search(Request $request){
         $search = $request->get('search');
 
-         $data = Category::where('name','like','%'.$search.'%')->paginate(5);
+        $data = Category::where('name','like','%'.$search.'%')->paginate(5);
         return view('admin.category.index',compact('data'));
         
     }  

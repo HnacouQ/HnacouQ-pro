@@ -63,7 +63,7 @@ class userController extends Controller
 
         if ($add) {
             # code...
-            return redirect()->route('user.index')->with('success','Bạn thêm mới user thành công!');
+            return redirect()->route('user.index')->with('success','Add user Successfully!!!');
         }
     }
 
@@ -89,7 +89,12 @@ class userController extends Controller
         //
         $data = User::find($id);
         // dd($data->name);
-        return view('admin.user.edit',compact('data'));
+        if($data){
+            return view('admin.user.edit',compact('data'));
+        }else{
+            return redirect()->route('user.index')->with('error','Not Found Data');
+        }
+        
 
     }
 
@@ -107,7 +112,7 @@ class userController extends Controller
         $request -> offsetUnset('_token');
          $request -> offsetUnset('_method');
         User::where(['id'=>$id])->update($request->all());
-        return redirect()->route('user.index')->with('success','dữ liệu đã đc sửa thành công!!');
+        return redirect()->route('user.index')->with('success','Update Data Successfully!!');
     }
 
     /**
@@ -122,10 +127,10 @@ class userController extends Controller
         $data = User::find($id)->delete();
         if ($data) {
             # code...
-            return redirect()->back()->with('success','Xóa thành Công!!!');
+            return redirect()->back()->with('success','Delete User Successfully!!!');
         }
         else{
-            return redirect()->back()->with('success','Xóa Thất Bại!!!');
+            return redirect()->back()->with('success','Delete User Fail!!!');
         }
     }
 
@@ -144,7 +149,7 @@ class userController extends Controller
     public function search(Request $request){
         $search = $request->get('search');
 
-         $data = User::where('name','like','%'.$search.'%')->paginate(5);
+        $data = User::where('name','like','%'.$search.'%')->paginate(5);
         return view('admin.user.index',compact('data'));
         
     }  

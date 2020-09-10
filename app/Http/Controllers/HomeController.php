@@ -10,6 +10,9 @@ use App\models\Order;
 use App\models\OrderDetail;
 use App\models\Comment;
 use App\helper\Views;
+use App\Http\Requests\Home\Login;
+use App\Http\Requests\Home\Regis;
+
 use DB;
 use Auth;
 use Mail;
@@ -40,20 +43,14 @@ class HomeController extends Controller
 
     }
 
-     public function post_login(Request $request){
+     public function post_login(Login $request){
 
-        $this->validate($request,[
-          'email' => 'required|email',
-          'password' => 'required',
-        ],[
-          'email.required' => 'Bạn chưa nhập Email',
-          'email.email' => 'Email chưa đúng định dạng ....@gmail.com',
-          'password.required' => 'Bạn chưa nhập Password',
-        ]);
         if (Auth::guard('cus')->attempt($request->only('email','password'),false)) {
 
             return redirect()->route('home');
+
         }else{
+          
             return redirect()->back();
         }
         
@@ -71,24 +68,7 @@ class HomeController extends Controller
 
     }
 
-    public function post_register(request $request){
-      $this->validate($request,[
-        'name' => 'required',
-        'phone' => 'required|numeric',
-        'address' => 'required',
-        'email' => 'required|email|unique:customer,email',
-        'password' => 'required',
-        
-      ],[
-        'name.required' => 'Không được để trống...',
-        'phone.required' => 'Không được để trống...',
-        'phone.numeric' => 'số điện thoại sai định dạng',
-        'address.required' => 'Không được để trống...',
-        'email.required' => 'Không được để trống...',
-        'email.email' => 'Email chưa đúng định dạng...@gmail.com',
-        'email.unique' => 'email này đã tồn tại..',
-        'password.required' => 'Không được để trống...',
-      ]);
+    public function post_register(Regis $request){
 
       if (Customer::create([
           'name' => $request->name,
@@ -121,7 +101,7 @@ class HomeController extends Controller
         ->select('category.id as cat_id','category.slug as cat_slug','product.name','product.image','product.id','product.slug','product.price','product.sale_price')
         ->where('category.slug',$slug)
         ->paginate(4);
-        // dd($data);
+        // dd($data==[]);
        // dd($prod);
       // $pro = Product::where('slug',$slug)->first();
        if ($data) {

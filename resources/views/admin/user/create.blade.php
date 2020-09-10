@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title','Thêm user')
+@section('title','Add user')
 @section('content')
 <form action="{{route('user.store')}}" method="POST" role="form">
 	@csrf
 	<div class="row">
 			<div class="col-md-4">
 				<div class="form-group">
-				<label for="">Tên user</label>
+				<label for="">Name</label>
 				<input type="text" name="name" class="form-control" id="name">
 			</div>
 			@if($errors->has('name'))
@@ -31,6 +31,6 @@
 			</div>
 	
 
-	<button type="submit" class="btn btn-primary">Thêm Mới</button>
+	<button type="submit" class="btn btn-primary">Add</button>
 </form>
 @stop()

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Sửa đổi user')
+@section('title','Update User')
 @section('content')
 <form action="{{route('user.update',$data->id)}}" method="POST" role="form">
 	@csrf
@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-group">
-			<label for="">Tên user</label>
+			<label for="">Name</label>
 			<input type="text" name="name" class="form-control" value="{{$data->name}}" id="name">
 		</div>
 		@if($errors->has('name'))

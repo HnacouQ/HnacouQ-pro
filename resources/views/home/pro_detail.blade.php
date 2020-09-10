@@ -147,7 +147,7 @@
 									</div>
 									<div class="form-group">
 										<div class="col-md-3">
-											<input type="submit" value="LEAVE REVIEW" class="btn btn-danger btn-review">
+											<input type="submit" value="Comment" class="btn btn-danger btn-review">
 										</div>
 									</div>
 							</form>

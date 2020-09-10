@@ -18,20 +18,26 @@
 			<div class="container">
                      <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Thông tin chi tiết đơn hàng</h3>
+                                    <h3>Information detail your order</h3>
                                     
-                                        <h4>Tên khách hang: {{$ord->name}}</h4>
-                                        <h4>Ngày đặt hàng: {{date('d/m/Y',strTotime($ord->created_at))}}</h4>
-                                        <h4>Phương thức thanh toán: {{$ord->payment_method == 0 ? 'Thanh toán trực tiếp' : 'Tài khoản ngân hàng'}}</h4>
+                                        <h4>Order: {{$ord->cus->name}}</h4>
+                                        <h4>Order Date: {{date('d/m/Y',strTotime($ord->created_at))}}</h4>
+                                        <h4>Payment method: {{$ord->payment_method == 0 ? 'Direct Payment' : 'Online Payment'}}</h4>
                                         @if($ord->status == 0)
-                                        <h4>Trạng thái đơn hàng: Đang xử lý</h4>
+                                        <h4>Status: Processing</h4>
                                         @elseif($ord->status == 1)
-                                        <h4>Trạng thái đơn hàng: Giao hàng thành công</h4>
+                                        <h4>Status: Delivered</h4>
                                         @elseif($ord->status == 2)
-                                        <h4>Trạng thái đơn hàng: Đơn hàng đã hủy</h4>
+                                        <h4>Status: Canceled Order</h4>
                                         @endif
-                                        <h4>Địa chỉ nhận hàng: {{$ord->address}}</h4>
-                                        <h4>SĐT: {{$ord->phone}}</h4>
+                                        <h4>Address: {{$ord->cus->address}}</h4>
+                                        <h4>Phone: {{$ord->cus->phone}}</h4>
+                                        <p>--------------------------------</p>
+                                        <h3>Receiver's information:</h3>
+                                        <h4>Name: {{$ord->name}}</h4>
+                                        <h4>Address: {{$ord->address}}</h4>
+                                        <h4>Phone: {{$ord->phone}}</h4>
+                                        <p>--------------------------------</p>
                                     
 
                                 </div>
@@ -39,10 +45,10 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Sản phẩm</th>
-                                        <th>Số lượng</th>
-                                        <th>Giá</th>
-                                        <th>Thành Tiền</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,11 +67,11 @@
                                 </tbody>
                             </table>  
                             <div style ="margin-bottom: 30px">
-                                 <h3 style="font-family: roboto">Tổng giá trị đơn hàng : {{number_format($total_price)}} đ</h3>
+                                 <h3 style="font-family: roboto">Totals : {{number_format($total_price)}} đ</h3>
                              @if($data->order->status == 0)
-                             <span><a href="{{route('del_order',['id'=>$ord->id])}}" class="btn btn-danger ">Hủy đơn</a></span>
+                             <span><a href="{{route('del_order',['id'=>$ord->id])}}" class="btn btn-danger ">Cancel</a></span>
                              @else
-                             <span><a href="{{route('my_order',Auth::guard('cus')->user()->id)}}" class="btn btn-success ">Quay lại</a></span>
+                             <span><a href="{{route('my_order',Auth::guard('cus')->user()->id)}}" class="btn btn-success ">Back</a></span>
                              @endif
                             </div>     
 					

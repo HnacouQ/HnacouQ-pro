@@ -6,7 +6,7 @@
 				<label class="sr-only" for="">label</label>
 				<input type="search" name = "search" class="form-control" id="" placeholder="Search....">
 			</div>
-			<button type="submit" class="btn btn-primary">Tìm kiếm</button>
+			<button type="submit" class="btn btn-primary">Search</button>
 			<span><a href="{{route('category.create')}}" class="btn btn-primary  glyphicon glyphicon-plus"></a></span>
 		</form>
 	<table class="table table-hover">
@@ -29,7 +29,7 @@
 				<th>name</th>
 				<th>status</th>
 				<th>created_at</th>
-				<th>Tùy Chọn</th>
+				<th>#</th>
 			</tr>
 		</thead>
 		<tbody>

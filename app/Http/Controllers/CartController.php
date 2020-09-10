@@ -21,26 +21,64 @@ class CartController extends Controller
     }
     public function add($id,$quantity = 1, Cart $cart){
         $pro = Product::find($id);
-    	$cart->add( $pro,$quantity);
+    	  if($pro){
+           $cart->add( $pro,$quantity);
+         }else{
+          return view('home.404');
+         }
 
         
 
         return redirect()->route('cart')->with('success','Thêm Vào Giỏ Hàng Thành Công');
     }
     public function remove($id,Cart $cart){
-        $cart ->remove($id);
+       $pro = Product::find($id);
+
+       if($pro){
+          $cart ->remove($id);
 
           return redirect()->route('cart')->with('success','Xóa Khỏi Giỏ Hàng Thành Công');
+       }else{
+         return view('home.404');
+       }
+
+        
     	
     }
     public function update($id,Cart $cart){
+
+      // dd($cart->total_price);
+
+        $pro = Product::find($id);
+
+
+
         $quantity = Request()->quantity;
+
+
+        if($pro){
+          if(is_numeric($quantity)){
+          $succ =  $cart->update($id,$quantity);
+          return [
+            'title' => 'success',
+            'message' => 'Bạn đã cập nhật giỏ hàng thành công!!',
+            'total_price' => $cart->total_price,
+
+          ];
+
+          // return redirect()->route('cart')->with('success','Xóa Khỏi Giỏ Hàng Thành Công');
+
+        }else{
+          return[
+            'title' => 'warning',
+            'message' => 'Bạn nhập số lượng sai!!',
+          ];
+        } 
+      }else{
+        return view('home.404');
+      }
+
         
-        $cart->update($id,$quantity);
-
-          return redirect()->route('cart')->with('success','Cập Nhật Giỏ Hàng Thành Công');
-
-    	
     }
     public function clear(Cart $cart){
 

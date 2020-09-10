@@ -21,6 +21,17 @@
 
 		}
 
+		private function total_price(){
+			$total = 0;
+			foreach ($this->items as $key => $item) {
+				# code...
+				$total += $item['price']*$item['quantity'];
+			}
+
+			return $total;
+
+		}
+
 		public function add($pro,$quantity){
 
 			if(isset($this->items[$pro->id])){
@@ -71,16 +82,7 @@
 			
 		}
 
-		private function total_price(){
-			$total = 0;
-			foreach ($this->items as $key => $item) {
-				# code...
-				$total += $item['price']*$item['quantity'];
-			}
-
-			return $total;
-
-		}
+		
 
 		private function total_quantity(){
 			$total = 0;

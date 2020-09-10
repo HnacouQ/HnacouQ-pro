@@ -9,7 +9,7 @@
 	<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-				<label for="">Tên banner</label>
+				<label for="">Name banner</label>
 				<input type="text" name="name" class="form-control" value="{{$data->name}}" id="name">
 				@error('name')
 				<small class="help-block">{{$message}}</small>
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="">Loại Banner</label>
+				<label for="">Type Banner</label>
 				<input type="number" name="type" value="{{$data->type}}" class="form-control">
 				@error('type')
 				<small class="help-block">{{$message}}</small>
@@ -25,7 +25,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="">Ảnh</label>
+				<label for="">Image</label>
 				<input type="hidden" name="image" value="{{$data->image}}">
 				<input type="file" name="upload" class="form-control" id="">
 				<img src="{{url('')}}/public/uploads/banner/{{$data->image}}" width="60px" alt="">{{$data->image}}

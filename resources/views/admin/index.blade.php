@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Trang Chủ')
+@section('title','Home')
 @section('content')
 <section class="content" style="height: auto !important; min-height: 0px !important;">
 	<!-- Small boxes (Stat box) -->
@@ -10,7 +10,7 @@
 		  <div class="inner text-center">
 			<h3>{{ $product_count }}</h3>
 
-			<p>tổng sản phẩm</p>
+			<p>Total Product</p>
 		  </div>
 		  <div class="icon">
 			<i class="ion ion-bag"></i>
@@ -25,7 +25,7 @@
 		  <div class="inner text-center">
 			<h3>{{ $order_count }}</h3>
 
-			<p>Tổng đơn hàng</p>
+			<p>Total Order</p>
 		  </div>
 		  <div class="icon">
 			<i class="ion ion-stats-bars"></i>
@@ -40,7 +40,7 @@
 		  <div class="inner text-center">
 			<h3>{{ $user_count }}</h3>
 
-			<p>Tổng người dùng</p>
+			<p>Total User</p>
 		  </div>
 		  <div class="icon">
 			<i class="ion ion-person-add"></i>
@@ -55,7 +55,7 @@
 		  <div class="inner text-center">
 			<h3>{{ $cus_count }}</h3>
 
-			<p>Tổng khách hàng</p>
+			<p>Total Customer</p>
 		  </div>
 		  <div class="icon">
 			<i class="ion ion-pie-graph"></i>
@@ -65,7 +65,7 @@
 	  </div>
 	  <!-- ./col -->
 	</div>
-	<h3>Đơn hàng gần đây</h3>
+	<h3>Recent Order</h3>
 	<form action="{{route('search_order')}}" method="GET" class="form-inline" role="form">
 			<div class="form-group">
 				<label class="sr-only" for="">label</label>
@@ -77,12 +77,12 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Tên khách hàng</th>
-				<th>Ghi chú đơn hàng</th>
-				<th>Phương thức thanh toán</th>
-				<th>Trạng Thái</th>
-				<th>Ngày đặt hàng</th>
-				<th>Tùy chọn</th>
+				<th>Customer Name</th>
+				<th>Order Note</th>
+				<th>Payment Method</th>
+				<th>Status</th>
+				<th>Order Date</th>
+				<th>#</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -91,16 +91,16 @@
 				<td>{{$data->name}}</td>
 				<td>{{$data->order_note}}</td>
 				@if($data->payment_method == 1)
-				<td>Tài khoản ngân hàng</td>
+				<td>Online Payment</td>
 				@else
-				<td>Thanh toán trực tiếp</td>
+				<td>Direct Payment</td>
 				@endif
 				@if($data->status == 0)
-				<td>chưa giao hàng</td>
+				<td>Processing</td>
 				@elseif($data->status == 1)
-				<td>Đã giao hàng</td>
+				<td>delivered</td>
 				@elseif($data->status == 2)
-				<td>Đơn hủy</td>
+				<td>Canceled Order</td>
 				@endif
 				<td>{{date('d/m/Y H:i',strTotime($data->created_at))}}</td>
 				<td>

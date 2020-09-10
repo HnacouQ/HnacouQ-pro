@@ -13,20 +13,27 @@
 		</form>
 	<table class="table table-hover">
 		@if(Session::has('success'))
-		<div class="alert alert-success">
+		<div class="alert alert-success text-center">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		{{Session::get('success')}}
 		@endif
+		</div>
+		@if(Session::has('error'))
+		<div class="alert alert-success text-center">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		{{Session::get('error')}}
+		@endif
+		</div>
 		
 		<thead>
 			<tr>
 				<th>STT</th>
-				<th>Ảnh sản phẩm</th>
-				<th>Tên sản phẩm</th>
+				<th>Image</th>
+				<th>Name</th>
 				
-				<th>trạng thái</th>
-				<th>ngày tạo</th>
-				<th>Tùy Chọn</th>
+				<th>Status</th>
+				<th>Created_at</th>
+				<th>#</th>
 			</tr>
 		</thead>
 		<tbody>

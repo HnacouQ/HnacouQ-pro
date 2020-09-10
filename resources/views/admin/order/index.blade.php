@@ -19,12 +19,12 @@
 		@endif
 		<thead>
 			<tr>
-				<th>Tên Khách hàng</th>
-				<th>Ghi Chú Đơn Hàng</th>
-				<th>Phương Thức Thanh Toán</th>
-				<th>Trạng Thái đơn hàng</th>
-				<th>Ngày Đặt hàng</th>
-				<th>Tùy Chọn</th>
+				<th>Customer Name</th>
+				<th>Order Note</th>
+				<th>Payment Method</th>
+				<th>Status</th>
+				<th>Order Date</th>
+				<th>#</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,16 +34,16 @@
 				<td>{{$data->name}}</td>
 				<td>{{$data->order_note}}</td>
 				@if($data->payment_method == 1)
-				<td>Tài khoản ngân hàng</td>
+				<td>Online Payment</td>
 				@else
-				<td>Thanh toán trực tiếp</td>
+				<td>Direct Payment</td>
 				@endif
 				@if($data->status == 0)
-				<td>chưa giao hàng</td>
+				<td>Processing</td>
 				@elseif($data->status == 1)
-				<td>Đã giao hàng</td>
+				<td>Delivered</td>
 				@elseif($data->status == 2)
-				<td>Đã hủy đơn hàng</td>
+				<td>Canceled Order</td>
 				@endif
 				<td>{{date('d/m/Y H:i',strTotime($data->created_at))}}</td>
 				<td>

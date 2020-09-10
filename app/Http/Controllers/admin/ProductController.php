@@ -61,7 +61,7 @@ class ProductController extends Controller
 
          $add = Product::create($request->all());
          if($add){
-            return redirect()->route('product.index')->with('success','thêm mới sản phẩm thành công!!!!');
+            return redirect()->route('product.index')->with('success','Add Product successfully!!');
          }
          else{
             return redirect()->back();
@@ -82,9 +82,12 @@ class ProductController extends Controller
         $data = Product::find($id);
 
         if(is_null($data)){
-            return redirect()->route('product.index')->with('success','Dữ liệu này không có trong CSDL');
+
+            return redirect()->route('product.index')->with('success','Not Found Data!');
+
          // dd($data->image);
         }else{
+
             return view('admin.product.show',compact('data'));
         }
         
@@ -103,7 +106,13 @@ class ProductController extends Controller
        
          $data = Product::find($id);
           $cats = Category::all();
-         return view('admin.product.edit',compact('data','cats'));
+          if($data){
+            return view('admin.product.edit',compact('data','cats'));
+          }else{
+
+            return redirect()->route('product.index')->with('error','Not Found Data!');
+          }
+         
     }
 
     /**
@@ -142,7 +151,7 @@ class ProductController extends Controller
             'status' => $request->status,
             'image' => $request->image,
         ]);
-        return redirect()->route('product.index')->with('success','Dữ liệu Được Sửa Thành Công');
+        return redirect()->route('product.index')->with('success','Update Product Successfully!!');
 
     }
 
@@ -158,10 +167,10 @@ class ProductController extends Controller
        $data = Product::find($id)->delete();
         if ($data) {
             # code...
-            return redirect()->back()->with('success','Xóa thành Công!!!');
+            return redirect()->back()->with('success','Delete Product Successfully!!!');
         }
         else{
-            return redirect()->back()->with('success','Xóa Thất Bại!!!');
+            return redirect()->back()->with('success','Delete Product Fail!!!');
         }
     }
     public function search(Request $request){

@@ -7,10 +7,10 @@
 	<div class="row">
 		<div class="col-md-9">
 			<div class="form-group">
-				<label for="">Tên sản phẩm</label>
+				<label for="">Name</label>
 			<input type="text" name="name" class="form-control" id="name" value="{{old('name')}}">
 				@error('name')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block " style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			
@@ -18,66 +18,66 @@
 				<label for="">Slug</label>
 				<input type="text" name="slug" class="form-control" id="slug" value="{{old('slug')}}">
 				@error('slug')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			
 			<div class="form-group">
-				<label for="">Mô tả sản phẩm</label>
+				<label for="">Description</label>
 				<textarea name="content" id="input" class="form-control" rows="3">{{old('content')}}</textarea>
 				@error('content')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
-				<label for="">Tên danh mục</label>
+				<label for="">Category Name</label>
 				<select name="category_id" id="input" class="form-control" required="required">
-					<option value="">Chọn một</option>
+					<option value="">Choose one</option>
 					@foreach($cats as $cat)
 					<option value="{{$cat->id}}">{{$cat->name}}</option>
 					@endforeach
 				</select>
 				@error('category_id')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			<div class="form-group">
-				<label for="">Giá sản phẩm</label>
+				<label for="">Price</label>
 				<input type="text" name="price" class="form-control" id="" value="{{old('price')}}">
 				@error('price')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			
 			<div class="form-group">
-				<label for="">Giá khuyến mãi</label>
+				<label for="">Sale_price</label>
 				<input type="text" name="sale_price" class="form-control" id="" value="{{old('sale_price')}}">
 				@error('sale_price')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			
 			<div class="form-group">
-				<label for="">Trạng Thái</label>
+				<label for="">Status</label>
 				<div class="radio">
 					<label>
 						<input type="radio" name="status" id="input" value="0" checked="checked">
-						Ẩn
+						Hide
 					</label>
 					<label>
 						<input type="radio" name="status" id="input" value="1">
-						Hiện
+						Show
 					</label>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="">Ảnh</label>
+				<label for="">Image</label>
 				<input type="file" name="upload" class="form-control" id="">
 				@error('upload')
-				<small class="help-block">{{$message}}</small>
+				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
 			</div>
 			
@@ -85,7 +85,7 @@
 	</div>
 	
 
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn btn-primary">Add</button>
 </form>
 @stop()
 @section('js')

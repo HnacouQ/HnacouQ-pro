@@ -27,38 +27,43 @@
 							<div class="form-group">
 								<label for="">Name</label>
 								<input type="text" name="name" class="form-control" id="">
+								@error('name')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('name'))
-							{{$errors->first('name')}}
-							@endif
+							
 							<div class="form-group">
 								<label for="">Phone</label>
 								<input type="number" name="phone" class="form-control" id="">
+								@error('phone')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('phone'))
-							{{$errors->first('phone')}}
-							@endif
+							
 							<div class="form-group">
 								<label for="">Address</label>
 								<input type="text" name="address" class="form-control" id="">
+								@error('address')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('address'))
-							{{$errors->first('address')}}
-							@endif
+							
 							<div class="form-group">
 								<label for="">Email Address</label>
 								<input type="email" name="email" class="form-control" id="">
+								@error('email')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('email'))
-							{{$errors->first('email')}}
-							@endif
+							
 							<div class="form-group">
 								<label for="">PassWord</label>
 								<input type="password" name="password" class="form-control" id="">
+								@error('password')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('password'))
-							{{$errors->first('password')}}
-							@endif
+							
 							<p>A passWord will be sent to your email</p>
 							<p>your personal data will be used to support your experience
 							throughout this website, to manage access to your acount, and for the purposes decribed in our privacy policy</p>

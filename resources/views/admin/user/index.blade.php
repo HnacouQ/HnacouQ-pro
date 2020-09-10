@@ -19,9 +19,9 @@
 		<thead>
 			<tr>
 				<th>STT</th>
-				<th>Tên User</th>
-				<th>Ngày Tạo</th>
-				<th>Tùy Chọn</th>
+				<th>Name</th>
+				<th>Created At</th>
+				<th>#</th>
 			</tr>
 		</thead>
 		<tbody>

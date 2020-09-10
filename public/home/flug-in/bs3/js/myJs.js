@@ -35,59 +35,57 @@ $('.add_cart').click(function(event){
 
 });
 
-// $('.tieptuc').click(function(e){
-// 	e.preventDefault();
-// 	alert('dmm')
-
-// });
-
-// $('.quantity').change(function(){
-//     var quantity= $(this).val();
-//     var id=$(this).attr('data-id');
-//     var price=$(this).attr('data-price');
-//    if(quantity <= 0){
-//    		quantity = 1;
-//    }else if(quantity >= 50){
-//    	quantity = 50;
-//    }
-
-   
-
-//    console.log('quantity->'+quantity);
-//     var now_price=quantity*price;
-//     // $('.price_currency_'+id).html(now_price);
-//     now_price = now_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
-// 	// console.log(now_price);
-//     // console.log(now_price);
-
-//     $.ajax({
-//        url: 'cart/update/'+id+'?quantity='+quantity,
-//        method: 'GET',
-//        data: {
-//         // 'id':id,'quantity':quantity
- 
-//        },
-//         beforeSend: function(){
-//           $.LoadingOverlay("show");
-//           },
-//         success:function(data){
-//           $.LoadingOverlay("hide");
-//           // console.log(data)
-//           Command: toastr["success"]('Bạn đã cập nhật số lượng thành công');
-//             $( "#list_cart" ).load( "http://localhost/project_news/public/cart #list_cart" );
-//              // $( ".quantity" ).load( "http://localhost/project_news/public/cart .quantity" );
-//            	$('input').attr('value',quantity);
-
-
-
-//             $('#total_price').html( now_price );
-//        }
-//     });
+$('.quantity').change(function(e){
+	e.preventDefault();
+    var quantity= Math.ceil($(this).val());
+    var id=$(this).attr('data-id');
+	var price=$(this).attr('data-price');
+	
+   if( quantity <= 0){
+   		quantity = 1;
+   }else if(quantity >= 50){
+   	quantity = 50;
+   }
+    var now_price=quantity*price;
+    // $('.price_currency_'+id).html(now_price);
+    now_price = now_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+	// console.log(now_price);
+	// console.log(now_price);
+	// console.log(quantity);
+	var arr = [];
+	arr.push(now_price);
+	console.log(arr);
+    $.ajax({
+       url: 'cart/update/'+id+'?quantity='+quantity,
+       method: 'GET',
+       data: {
+        // 'id':id,'quantity':quantity
+       },
+        beforeSend: function(){
+          $.LoadingOverlay("show");
+          },
+        success:function(data){
+			
+          	$.LoadingOverlay("hide");   
+          	Command: toastr[data.title](data.message);
+			$( "#list_cart" ).load( "cart #list_cart" );
+			// $( ".sub_total" ).load( "cart .sub_total" );
+			$('.qtt_cart'+id).val(quantity);
+			//    var total = $('.total_price'+id);
+			$('.total_price'+id).html( now_price );
+			// var total = data.total_price + parseInt(price);
+			// var sub_total = total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+			// $('.sub_total').html(sub_total);
+			// console.log(typeof parseInt(price));
+			// console.log(data.total_price);
+			
+	   }
+    });
 
 
     
 
-//  });
+ });
 
 // $('.dele-cart').click(function(event){
 // 	event.preventDefault();

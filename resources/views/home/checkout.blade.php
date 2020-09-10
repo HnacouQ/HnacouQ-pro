@@ -28,22 +28,37 @@
 								<div class="form-group">
 									<label for="">Name</label>
 									<input type="text" class="form-control" name="name" value="{{Auth::guard('cus')->user()->name}}" id="" >
+									@error('name')
+									<small class="help-block" style="color:red">{{$message}}</small>
+									@enderror
 								</div>
 								<div class="form-group">
 									<label for="">phone</label>
 									<input type="text" class="form-control" name="phone" value="{{Auth::guard('cus')->user()->phone}}" id="" >
+									@error('phone')
+									<small class="help-block" style="color:red">{{$message}}</small>
+									@enderror
 								</div>
 								<div class="form-group">
 									<label for="">Email</label>
 									<input type="text" class="form-control" name="email" value="{{Auth::guard('cus')->user()->email}}" id="" >
+									@error('email')
+									<small class="help-block" style="color:red">{{$message}}</small>
+									@enderror
 								</div>
 								<div class="form-group">
 									<label for="">Address</label>
 									<input type="text" class="form-control" name="address" value="{{Auth::guard('cus')->user()->address}}" id="" >
+									@error('address')
+									<small class="help-block" style="color:red">{{$message}}</small>
+									@enderror
 								</div>
 								<div class="form-group">
 								  <label for="exampleFormControlTextarea1">Order Notes</label>
 								  <textarea class="form-control rounded-0" name="order_note" id="exampleFormControlTextarea1" rows="4"></textarea>
+								  	@error('order_note')
+									<small class="help-block" style="color:red">{{$message}}</small>
+									@enderror
 								</div>
 							</div>
 							<div class="col-md-6 your-order">

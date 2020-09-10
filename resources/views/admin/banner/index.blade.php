@@ -19,10 +19,10 @@
 		<thead>
 			<tr>
 				<th>STT</th>
-				<th>Tên banner</th>
-				<th>Loại banner</th>
+				<th>Name banner</th>
+				<th>Type banner</th>
 				<th>created-at</th>
-				<th>Tùy Chọn</th>
+				<th>#</th>
 			</tr>
 		</thead>
 		<tbody>

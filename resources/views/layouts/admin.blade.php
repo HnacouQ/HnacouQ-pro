@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Trang Quản Trị | @yield('title')</title>
+  <title>Admin | @yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="icon" href="{{asset('public/home/images/graduation cap.png')}}">
@@ -42,7 +42,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Admin</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -141,7 +141,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li>
           <a href="{{route('admin')}}">
-            <i class="fa fa-th"></i> <span>Trang Chủ Quản Trị</span>
+            <i class="fa fa-th"></i> <span>Admin</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">Hot</small>
             </span>
@@ -149,56 +149,56 @@
         </li>
         <li class="treeview">
           <a href="#">
-           <i class="fa fa-snowflake-o" aria-hidden="true"></i><span> QL Danh mục</span>
+           <i class="fa fa-snowflake-o" aria-hidden="true"></i><span>Category</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
                <small class="label pull-right bg-blue">{{$category_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('category.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản lý</a></li>
+            <li><a href="{{route('category.index')}}"><i class="fa fa-circle-o"></i>List Category</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-           <i class="fa fa-user-secret" aria-hidden="true"></i></i> <span>QL User</span>
+           <i class="fa fa-user-secret" aria-hidden="true"></i></i> <span>User</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
                <small class="label pull-right bg-blue">{{$user_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
+            <li><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i>List User</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            <span>QL Sản phẩm</span>
+            <span>Products</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
                <small class="label pull-right bg-blue">{{$product_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('product.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
+            <li><a href="{{route('product.index')}}"><i class="fa fa-circle-o"></i>List Product</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-          <i class="fa fa-sliders" aria-hidden="true"></i><span>QL Banner</span>
+          <i class="fa fa-sliders" aria-hidden="true"></i><span>Banner</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
                <small class="label pull-right bg-blue">{{$banner_count}}</small>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('banner.index')}}"><i class="fa fa-circle-o"></i>Bảng Quản Lý</a></li>
+            <li><a href="{{route('banner.index')}}"><i class="fa fa-circle-o"></i>List Banner</a></li>
           </ul>
         </li>
         <li class="active">
           <a href="{{route('list_order')}}">
-            <i class="fa fa-book" aria-hidden="true"></i><span>DS Đơn hàng</span>
+            <i class="fa fa-book" aria-hidden="true"></i><span>List Order</span>
             <span class="pull-right-container">
                <small class="label pull-right bg-green">{{$order_success_count}}</small>
               <small class="label pull-right bg-red">{{$or_del_count}}</small>
@@ -227,7 +227,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">@yield('title')</h3>
+          
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"

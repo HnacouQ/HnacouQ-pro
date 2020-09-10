@@ -17,15 +17,15 @@
 		<div class="main-content-shop-page">
 			<div class="container">
 				
-					<h2>Đơn hàng của tôi</h2>
+					<h2>My Order</h2>
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Ghi chú đơn hàng</th>
-								<th>Phương thức thanh toán</th>
-								<th>Trạng thái</th>
-								<th>Ngày đặt hàng</th>
-								<th>Chi tiết</th>
+								<th>Order Note</th>
+								<th>Payment Method</th>
+								<th>Status</th>
+								<th>Created at</th>
+								<th>Detail</th>
 								
 								
 								
@@ -44,7 +44,7 @@
 								<td>Đơn hàng đã hủy</td>
 								@endif
 								<td>{{date('d/m/Y H:i',strTotime($my_order->created_at))}}</td>
-								<td><a href="{{route('home_or_detail',['id'=>$my_order->id])}}" class="btn btn-warning">Chi tiết</a></td>
+								<td><a href="{{route('home_or_detail',['id'=>$my_order->id])}}" class="btn btn-warning">Detail</a></td>
 								</tr>
 							@endforeach
 						</tbody>

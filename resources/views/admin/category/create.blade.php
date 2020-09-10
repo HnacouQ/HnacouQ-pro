@@ -5,7 +5,7 @@
 <form action="{{route('category.store')}}" method="POST" role="form" >
 	@csrf
 	<div class="form-group">
-		<label for="">Tên Danh Mục</label>
+		<label for="">Category Name</label>
 	<input type="text" class="form-control" name="name" id="name" value="{{old('name')}}" >
 		@error('name')
 		<small class="help-block">{{$message}}</small>
@@ -34,11 +34,11 @@
 		<div class="radio">
 			<label>
 				<input type="radio" name="status" id="input" value="1" checked="checked">
-				Hiện
+				Show
 			</label>
 			<label>
 				<input type="radio" name="status" id="input" value="0">
-				Ẩn
+				Hide
 			</label>
 		</div>
 	</div>

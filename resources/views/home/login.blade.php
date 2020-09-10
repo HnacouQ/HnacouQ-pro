@@ -40,17 +40,19 @@
 							<div class="form-group">
 								<label for="">Email Address</label>
 								<input type="text" class="form-control" name="email" id="">
+								@error('email')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('email'))
-							{{$errors->first('email')}}
-							@endif
+							
 							<div class="form-group">
 								<label for="">Password</label>
 								<input type="password" class="form-control" name="password" id="">
+								@error('password')
+								<small class="help-block" style="color:red">{{$message}}</small>
+								@enderror
 							</div>
-							@if($errors->has('password'))
-							{{$errors->first('password')}}
-							@endif
+							
 							<div class="form-group form-check">
 							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
 							    <label class="form-check-label" for="exampleCheck1">Remember Me</label>

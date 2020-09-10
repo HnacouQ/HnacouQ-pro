@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/font-awesome/css/all.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 	<link rel="stylesheet" href="{{url('public/home')}}/css/style.css">
 </head>
 <body>
@@ -54,18 +55,18 @@
 										<ul class="dropdown-menu" >
 											
 											<li><a href="" style="text-transform: capitalize">Profile</a></li>
-											<li><a href="{{route('my_order',Auth::guard('cus')->user()->id)}}" style="text-transform: capitalize">Đơn hàng của tôi</a></li>
+											<li><a href="{{route('my_order',Auth::guard('cus')->user()->id)}}" style="text-transform: capitalize">My order</a></li>
 
-											<li><a href="{{route('home_logout')}}" style="text-transform: capitalize">đăng xuất</a></li>
+											<li><a href="{{route('home_logout')}}" style="text-transform: capitalize">Log out</a></li>
 										</ul>
 										</li>
 										@else
 										<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{url('public/home')}}/images/icons/user.png" alt=""><b class="caret"></b></a>
 										<ul class="dropdown-menu">
-											<li><a href="{{route('home_login')}}" style="text-transform: capitalize">đăng nhập</a></li>
+											<li><a href="{{route('home_login')}}" style="text-transform: capitalize">Login</a></li>
 											
-											<li><a href="{{route('register')}}" style="text-transform: capitalize">đăng ký</a></li>
+											<li><a href="{{route('register')}}" style="text-transform: capitalize">Register</a></li>
 
 										</ul>
 										</li>
@@ -79,13 +80,13 @@
 													<div class="modal-content">
 														<div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-															<h4 class="modal-title">Tìm kiếm</h4>
+															<h4 class="modal-title">Search Product</h4>
 														</div>
 														<div class="modal-body">
 															<form action="{{route('home_search')}}" method="GET" class=" text-center" role="form" >
 															
 																<div class="form-group ">
-																	<input type="text" name="search" class="form-control" id="" placeholder="Nhập từ khóa...">
+																	<input type="text" name="search" class="form-control" id="" placeholder="Key.....">
 																	<span class=""></span>
 																</div>
 																<button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
@@ -196,6 +197,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/myJs.js"></script>
+	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/toastr.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/toastr.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

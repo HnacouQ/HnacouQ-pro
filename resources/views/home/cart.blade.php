@@ -28,42 +28,44 @@
 							@endif
 							<thead>
 								<tr>
-									<th>Ảnh Và Tên Sán Phẩm</th>
-									<th>Giá Sản Phẩm</th>
-									<th>Số Lượng</th>
-									<th>Tổng Tiền</th>
+									<th>Product</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
 									<th></th>
 								</tr>
 							</thead>
+							@if($carts->items)
 							<tbody>
-							
 								@foreach($carts->items as $item)
 								<tr>
-									
 									<td class="pro-img-name"><img src="{{url('public/uploads')}}/product/{{$item['image']}}" alt="" width="90"><span class="name-pro">{{$item['name']}}</span></td>
 									<td class="pro-price" style="color: red;">{{number_format($item['price'])}} đ</td>
 									<td class="pro-input-cart">
-										<form action="{{route('cart.update',['id'=>$item['id']])}}" method="GET" role="form">
-												<input type="number"  class="text-center input-cart" name="quantity" value="{{$item['quantity']}}">
-											<button type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-pencil"></button>
-										</form>
-
+										<input type="number"  class="quantity text-center input-cart qtt_cart{{$item['id']}}" data-id="{{$item['id']}}" data-price="{{$item['price']}}" name="quantity" value="{{$item['quantity']}}">
 									</td>
-									<td class="pro-total-cart" style="color: red;">{{number_format($item['quantity']*$item['price'])}} đ</td>
+								<td class="pro-total-cart total_price{{$item['id']}}"  style="color: red;">{{number_format($item['quantity']*$item['price'])}} đ</td>
 									<th class="pro-delete"><a href="{{route('cart.remove',['id'=>$item['id']])}}" onclick="return confirm('Bạn có chắc chắn không?')"><img src="{{url('public/home')}}/images/icons/Trash_icon.png" alt=""></a></th>
 								</tr>
 								
 								@endforeach
 							</tbody>
+							@else
+							<tbody>
+								<tr>
+									<td>Không có sản phẩm nào trong giỏ hàng của bạn!!</td>
+								</tr>
+							</tbody>
+							@endif
 						</table>
 						<div class="clear-update-shop-cart">
 							<div class="row">
 								<div class="col-md-3">
-									<a href="{{route('cart.clear')}}" class="btn btn-danger clear" onclick="return confirm('Bạn có chắc chắn không?')">Xóa Toàn Bộ Giỏ Hàng</a>
+									<a href="{{route('cart.clear')}}" class="btn btn-danger clear" onclick="return confirm('Bạn có chắc chắn không?')">Clear All</a>
 								</div>
 								
 								<div class="col-md-9 text-right">
-									<a href=""  class="btn btn-danger cart-continue">Tiếp Tục Mua Hàng</a>
+									<a href=""  class="btn btn-danger cart-continue">Back To Shop</a>
 								</div>
 							</div>
 						</div>
@@ -73,7 +75,7 @@
 									<table cellspacing="0" class="cart-totals" width="100%">
 										<tr class="cart_table_item">
 											<th>
-												<span class="my-cart-total" >Tổng Giỏ Hàng</span><br>
+												<span class="my-cart-total" >Totals Cart</span><br>
 												<!-- <span class="">Subtotal</span><br>
 												<span class="">Shipping Cost</span><br>
 												<span class="">Total</span><br> -->
@@ -87,15 +89,15 @@
 										</tr>
 										<tr class="cart_table_item">
 											<th>
-												Tổng:
+												Totals:
 											</th>
 											<td class="">
-												<span class="amount"  style="color: red;">{{number_format($carts->total_price)}} đ</span>
+												<span class="amount sub_total"  style="color: red;">{{number_format($carts->total_price)}} đ</span>
 											</td>
 										</tr>
 										<tr class="cart_table_item">
 											<th>
-												Phí Vận Chuyển:
+												Shipping:
 											</th>
 											<td class="">
 												<span class="amount"  style="color: red;">Free</span>
@@ -103,14 +105,14 @@
 										</tr>
 										<tr class="cart_table_item">
 											<th>
-												Tổng Tiền :
+												Totals :
 											</th>
 											<td class="product-price">
-												<span class="amount" style="color: red;">{{number_format($carts->total_price)}} đ</span>
+												<span class="amount sub_total" style="color: red;">{{number_format($carts->total_price)}} đ</span>
 											</td>
 										</tr>
 									</table>
-									<a href="{{route('checkout')}}" class="btn btn-danger btn-proceed" >Tiến Hành Đặt Hàng</a>
+									<a href="{{route('checkout')}}" class="btn btn-danger btn-proceed" >Process To Checkout</a>
 								</div>
 							</div>
 						</div>
