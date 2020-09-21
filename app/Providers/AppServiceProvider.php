@@ -48,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
                 'user_count' => User::all()->count(),
                 'category_count' => Category::all()->count(),
                 'cus_count' => Customer::count(),
+                'ramdomP' => Product::inRandomOrder()->limit(1)->get(),
 
             ]);
 

@@ -1,3 +1,7 @@
+
+
+
+
 $('.add_cart').click(function(event){
 	event.preventDefault();
 	var href = $(this).attr('href');
@@ -87,6 +91,32 @@ $('.quantity').change(function(e){
 
  });
 
+
+$('.update_status_order').change(function(e){
+	
+	var id = $(this).attr('data-id');
+	var status=$(this).find(":selected").val();
+
+	$.ajax({
+		url:'update_order',
+		method:'GET',
+		data:{
+			'id':id, 'status':status
+		},
+		beforeSend: function(){
+		$.LoadingOverlay("show");
+        },
+        success: function(data){
+        	$.LoadingOverlay("hide");   
+          	Command: toastr[data.title](data.message);
+        }
+	});
+
+
+
+	
+});
+
 // $('.dele-cart').click(function(event){
 // 	event.preventDefault();
 // 	var href = $(this).attr('href');
@@ -117,4 +147,8 @@ $('.quantity').change(function(e){
 // 	  currency: 'GBP'
 // 	// }).format(123));
 
+
+  
+
+   
 

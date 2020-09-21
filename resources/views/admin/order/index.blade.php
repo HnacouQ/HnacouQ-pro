@@ -31,26 +31,34 @@
 			@foreach($or as $data)
 
 			<tr>
-				<td>{{$data->name}}</td>
+				<td>{{$data->cus->name}}</td>
 				<td>{{$data->order_note}}</td>
 				@if($data->payment_method == 1)
 				<td>Online Payment</td>
 				@else
 				<td>Direct Payment</td>
 				@endif
-				@if($data->status == 0)
-				<td>Processing</td>
-				@elseif($data->status == 1)
-				<td>Delivered</td>
-				@elseif($data->status == 2)
-				<td>Canceled Order</td>
-				@endif
+				<td><select name="status" id="input" class="form-control update_status_order" data-id="{{$data->id}}">
+					@if($data->status == 0)
+						<option value="{{$data->status}}" selected >processing</option>
+						<option value="1">Delivered</option>
+						<option value="2">Canceled Order</option>
+					@elseif($data->status == 1)
+						<option value="{{$data->status}}" selected >Delivered</option>
+						<option value="0">processing</option>
+						<option value="2">Canceled Order</option>
+					@elseif($data->status == 2)
+						<option value="{{$data->status}}" selected >Canceled Order</option>
+						<option value="0">processing</option>
+						<option value="1">Delivered</option>
+					@endif
+					
+					
+				</select></td>
 				<td>{{date('d/m/Y H:i',strTotime($data->created_at))}}</td>
 				<td>
 					<a href="{{route('order_detail',['id' => $data->id])}}" class="btn btn-sm btn-warning glyphicon glyphicon-eye-open"></a>
-					@if($data->status === 0)
-					<a href="{{route('update_order',['id' => $data->id])}}" class="btn btn-sm btn-primary glyphicon glyphicon-pencil"></a>
-					@endif
+					
 				</td>
 			</tr>
 			@endforeach

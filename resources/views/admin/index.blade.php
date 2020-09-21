@@ -88,7 +88,7 @@
 		<tbody>
 			@foreach($or_news as $data)
 			<tr>
-				<td>{{$data->name}}</td>
+				<td>{{$data->cus->name}}</td>
 				<td>{{$data->order_note}}</td>
 				@if($data->payment_method == 1)
 				<td>Online Payment</td>

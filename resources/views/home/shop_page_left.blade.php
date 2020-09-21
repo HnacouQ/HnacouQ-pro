@@ -2,7 +2,6 @@
 
 @section('content')
 		<div class="banner">
-			<div class="container">
 				<div class="banner-content">
 					<img src="{{url('public/home')}}/images/banners/banner2.png" alt="">
 					<div class="banner-content-detail text-center">
@@ -10,7 +9,6 @@
 						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> SHOP PAGE</span>
 					</div>
 				</div>
-			</div>
 		</div>
 		<!-- end-banner -->
 		
@@ -55,6 +53,50 @@
 											</li></a>
 										@endforeach
 									</ul>
+								</div>
+								<div class="pro-item ">
+									@foreach($ramdomP as $rpro)
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pro-side-bar">
+										<div class="thumbnail my-pro">
+											
+												<div class="pro-img">
+													<img src="{{url('public/uploads/product')}}/{{$rpro->image}}" alt="">
+												</div>
+											
+											<div class="caption text-center" style="padding: 40px 15px; height: 160px">
+												<h4>{{$rpro->name}}</h4>
+												<img src="images/icons/icon-star.png" alt="">
+												@if($rpro->sale_price == 0)
+                                                <p style="margin-top: 15px;">
+                                                    Price: {{number_format($rpro->price)}} đ
+                                                </p>                                           
+                                            @else
+                                            <p  style="margin-top: 15px;">
+                                                <s class="pull-left">Price:{{number_format($rpro->price)}} đ</s>
+                                                <span class="pull-right">Sale-Price: {{number_format($rpro->sale_price)}} đ</span>
+                                            </p> 
+
+                                            
+                                            @endif							
+											</div>
+											<div class="pro-effect">
+												<div class="pro-effect-item">
+													<ul>
+														<li>
+															<a href="{{route('pro_detail',['slug' => $rpro->slug])}}"><i class="fas fa-search"></i></a>
+														</li>
+														<li>
+															<a href="{{route('cart.add',['id'=>$rpro->id])}}"><i class="fas fa-shopping-cart"></i></a>
+														</li>
+														<li>
+															<a href=""><i class="far fa-heart"></i></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									@endforeach
 								</div>
 							</div>
 							<div class="col-md-8">

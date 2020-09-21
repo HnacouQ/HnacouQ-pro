@@ -87,7 +87,7 @@
 											Cart Subtotal
 										</th>
 										<td class="product-price">
-											<span class="amount">{{number_format($carts->total_price)}}</span>
+											<span class="amount">{{number_format($carts->total_price)}} đ</span>
 										</td>
 									</tr>
 									<tr class="shipping">
@@ -113,7 +113,7 @@
 										<div class="panel-heading check-method">
 											<h5 class="panel-title"> <label>
 												<input type="radio" id="radio1" name="payment_method" value="0" checked>
-												 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >Check Payment</a></label>
+												 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >Online Payment</a></label>
 											</h5>
 										</div>
 										<div id="collapseOne" class="panel-collapse collapse in">
@@ -124,7 +124,7 @@
 										</div>
 										<div class="panel panel-default check-method">
 											<div class="panel-heading check-method">
-												<h5 class="panel-title"> <label><input type="radio" id="radio1" name="payment_method" value="1"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">Paypal</a></label>
+												<h5 class="panel-title"> <label><input type="radio" id="radio1" name="payment_method" value="1"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">Direct Payment</a></label>
 												</h5>
 											</div>
 										<div id="collapseOne2" class="panel-collapse collapse ">

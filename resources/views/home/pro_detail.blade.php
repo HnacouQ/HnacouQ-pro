@@ -35,7 +35,7 @@
 								@endif
 							</div>
 							<div class="product-detail-item">
-								<img src="images/icons/icon-star.png" alt="">
+							<img src="{{url('public/home/images/icons/icon-star.png')}}" alt="">
 							</div>
 							<div class="product-detail-item">
 								<h4>Review</h4>
@@ -106,7 +106,7 @@
 														<img class="media-object img-circle" src="https://www.gravatar.com/avatar/{{md5($com->email)}}" alt="Image" width="40px">
 													</a>
 													<div class="media-body">
-														<h4 class="media-heading">{{$com->name}}</h4><span> | {{date('d/m/Y H:i',strTotime($com->created_at))}}</span>
+														<h4 class="media-heading">{{$com->name}}</h4><span> | {{$com->created_at->diffForHumans()}}</span>
 														<p>{{$com->content}}</p>
 													</div>
 												</div>
@@ -152,7 +152,31 @@
 									</div>
 							</form>
 						</div>
-						
+						<div class="product-detail-related">
+							<div class="related-item text-center">
+								<h2>RELATED PRODUCT</h2>
+							</div>
+							<div class="related-item">
+								@foreach($related_pro as $rlpro)
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+									<div class="thumbnail">
+									<a href=""><img src="{{url('public/uploads/product')}}/{{$rlpro->image}}" alt=""></a>
+										<div class="caption text-center">
+										<h4>{{$rlpro->name}}</h4>
+											<img src="images/icons/icon-star.png" alt="">
+											<p>
+												{{$rlpro->sale_price == 0 ? number_format($rlpro->price).' đ' : number_format($rlpro->sale_price).' đ'}}
+											</p>
+											<p>
+												<a href="{{route('pro_detail',['slug' => $rlpro->slug])}}" class="btn btn-success">Detail</a>
+												<a href="{{route('cart.add',['id'=>$rlpro->id])}}" class="btn btn-primary">Add To Cart</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								@endforeach
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

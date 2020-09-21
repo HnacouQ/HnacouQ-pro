@@ -2,7 +2,6 @@
 
 @section('content')
 		<div class="banner">
-			<div class="container">
 				<div class="banner-content">
 					<img src="{{url('public/home')}}/images/banners/banner2.png" alt="">
 					<div class="banner-content-detail text-center">
@@ -10,7 +9,6 @@
 						<i class="fas fa-home"></i><span> Home </span><i class="fas fa-angle-double-right"></i><span style="color: red;"> CONTACT</span>
 					</div>
 				</div>
-			</div>
 		</div>
 		<!-- end-banner -->
 		<div class="main-content-contact">

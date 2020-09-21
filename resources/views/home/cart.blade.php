@@ -53,7 +53,7 @@
 							@else
 							<tbody>
 								<tr>
-									<td>Không có sản phẩm nào trong giỏ hàng của bạn!!</td>
+									<td>Your shopping cart is empty!!</td>
 								</tr>
 							</tbody>
 							@endif

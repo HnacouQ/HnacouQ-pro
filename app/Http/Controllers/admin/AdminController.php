@@ -4,13 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
+use App\models\Customer;
 use App\models\Product;
 use App\models\Order;
 use App\models\OrderDetail;
 use App\User;
 use DB;
-use App\models\Customer;
+use Auth;
+
 
 class AdminController extends Controller
 {
@@ -46,14 +47,22 @@ class AdminController extends Controller
     }     
 
 
-    public function update_order($id){
+    public function update_order(Request $request){
+        
+        $id = $request->id;
+        $status = $request->status;
         $data = Order::find($id);
 
+        // dd($id);
+
         Order::where(['id'=> $id])->update([
-            'status' => 1
+            'status' => $status
         ]);
 
-        return redirect()->route('list_order')->with('success','Đơn hàng đã được chuyển sang trạng thái giao hàng...');
+        return [
+            'title' => 'success',
+            'message' => 'Update Status Successfully!!',
+        ];  
 
        
     } 

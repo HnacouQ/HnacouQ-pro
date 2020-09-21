@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{url('public/ad')}}/css/AdminLTE.css">
   <link rel="stylesheet" href="{{url('public/ad')}}/css/_all-skins.min.css">
   <link rel="stylesheet" href="{{url('public/ad')}}/css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
   <link rel="stylesheet" href="{{url('public/ad')}}/css/style.css" />
   <script src="{{url('public/ad')}}/js/angular.min.js"></script>
   <script src="{{url('public/ad')}}/js/app.js"></script>
@@ -265,7 +266,21 @@
 <script src="{{url('public/ad')}}/js/dashboard.js"></script>
 <script src="{{url('public/ad')}}/tinymce/tinymce.min.js"></script>
 <script src="{{url('public/ad')}}/tinymce/config.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/toastr.min.js"></script>
 <script src="{{url('public/ad')}}/js/function.js"></script>
+<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/myJs.js"></script>
    @yield('js')
+<script type="text/javascript">
+  toastr.options = 
+        {
+          newestOnTop      : true,
+          closeButton      : false,
+          progressBar      : true,
+          preventDuplicates: false,
+          showMethod       : 'slideDown',
+          timeOut          : 3000, //default timeout,
+        };
+</script>
 </body>
 </html>

@@ -12,6 +12,7 @@ use App\models\Comment;
 use App\helper\Views;
 use App\Http\Requests\Home\Login;
 use App\Http\Requests\Home\Regis;
+use Illuminate\Support\Facades\Crypt;
 
 use DB;
 use Auth;
@@ -29,13 +30,13 @@ class HomeController extends Controller
     {	
        
     	$all = Product::orderBy('id','DESC')->limit(4)->get();
-    	$men = Product::orderBy('views','DESC')->limit(8)->get();
-    	$women = Product::where('category_id',2)->get();
+    	$views = Product::orderBy('views','DESC')->limit(8)->get();
+    	$sale = Product::where('sale_price','>', 0)->orderBy('sale_price','ASC')->limit(8)->get();
     	$asso = Product::where('category_id',3)->get();
         $banner = Banner::where('type',1)->get();
 
     	// dd($banner);
-        return view('home.home', compact('all','men','women','asso','banner'));
+        return view('home.home', compact('all','views','sale','asso','banner'));
     }
 
     public function login(){
@@ -121,14 +122,24 @@ class HomeController extends Controller
       
 
       $category = Category::all();
+
       $prod = Product::where('slug',$slug)->first();
+      // dd($prod);
+
+      //sản phẩm tương tự....
+      $related_pro = Product::where('category_id',$prod->category_id)->whereNotIn('slug',[$slug])->limit(3)->get();
+
+      // dd($related_pro);
+      //lấy bình luận của sản phẩm
       $comment = Comment::where('com_slug',$slug)->get();
       if ($prod) {
+        //lấy số view hiện tại của sản phẩm
         $view = $prod->views;
+        //truy vấn + thêm 1 view cho sản phẩm khi người dùng bấm vào xem sp
         Product::where('slug',$slug)->update([
         'views' => $view + 1,
         ]);
-        return view('home.pro_detail',compact('category','prod','comment'));
+        return view('home.pro_detail',compact('category','prod','comment','related_pro'));
        }else{
         return view('home.404');
        }
@@ -146,27 +157,46 @@ class HomeController extends Controller
 
     public function my_order($id){
 
-      $my_or = Order::where('customer_id',$id)->orderBy('created_at','desc')->paginate(5);
+      $data = Crypt::decrypt($id);
+      dd($data);
 
-      return view('home.my_order',compact('my_or'));
+      $my_or = Order::where('customer_id',$data)->orderBy('created_at','desc')->paginate(5);
+
+      if($my_or){
+         return view('home.my_order',compact('my_or'));
+       }else{
+        return view('home.404');
+       }
+
+     
     }
 
     public function home_or_detail($id){
       $ord = Order::find($id);
+
+      if($ord){
         // dd($ord->name);
         $or_de = OrderDetail::where(['order_id'=> $id])->get();
         // dd($or_de);
         return view('home.my_order_detail',compact('ord','or_de'));
+      }else{
+        return view('home.404');
+      }
+        
     }
 
     public function del_order($id){
       $data = Order::find($id);
-      $data->update([
-        'status' => 2,
-      ]);
-      // dd($data->customer_id);
 
-      return redirect()->route('my_order',['id'=>$data->customer_id]);
+      if($data){
+        $data->update([
+        'status' => 2,
+        ]);
+        // dd($data->customer_id);
+
+        return redirect()->route('my_order',['id'=>$data->customer_id]);
+      }
+      
     }
 
     

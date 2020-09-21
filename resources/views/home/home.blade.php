@@ -48,21 +48,23 @@
                                 <h4 class="area-heading">Free Shipping & Return</h4>   
                             </div>
                             
-                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
+                            <p class="text-center">You can return your items by mail for free. Just print a pre-addressed
+                                shipping label & send it back to us.</p>
                         </div>
                         <div class="col-md-4">
                            <div class="text-center">
                                 <img src="{{url('public/home')}}/images/icons/Icon-sp2.png" alt="">
                                 <h4 class="area-heading" >30 Days Return</h4>
                            </div>
-                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
+                            <p class="text-center">We’ve extended our return policy by
+                                30 days until further notice.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="text-center">
                                 <img src="{{url('public/home')}}/images/icons/Icon-sp3.png" alt="">
                                 <h4 class="area-heading">24/7 Strong Support</h4>
                             </div>
-                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae voluptatibus</p>
+                            <p class="text-center">The addition of 24/7 support for business customers comes after you told us that support needed to be not only easier to contact</p>
                         </div>
                     </div>
                     <!-- end home-support -->
@@ -132,7 +134,7 @@
                                 <h1>OUR PRODUCTS</h1>
                             </div>
                             <div class="our-product-item text-center">
-                                <p class="color-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                                <p class="color-gray">The collection of CIFA and FASHION CENTER wholesalers at tiny price ... Do not miss it! </p>
                             </div>
                             <div class="our-product-item text-center">
                                 <div role="tabpanel">
@@ -145,7 +147,7 @@
                                             <a href="#popular" aria-controls="tab" role="tab" data-toggle="tab">TOP VIEWS</a>
                                         </li>
                                         <li role="presentation" class="pro-tabs-item">
-                                            <a href="#trending" aria-controls="tab" role="tab" data-toggle="tab">WOMEN</a>
+                                            <a href="#trending" aria-controls="tab" role="tab" data-toggle="tab">BIG SALE</a>
                                         </li>
                                         <li role="presentation" class="pro-tabs-item">
                                             <a href="#sell" aria-controls="tab" role="tab" data-toggle="tab">ASSESSORIS</a>
@@ -206,25 +208,25 @@
                                         <div role="tabpanel" class="tab-pane active" id="popular">
                                             <div class="row">
                                                 <div class="pro-item">
-                                                     @foreach($men as $mens)
+                                                     @foreach($views as $view)
                                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="thumbnail my-pro">
                                                             <div class="pro-img">
-                                                                <img src="{{url('public/uploads/product')}}/{{$mens->image}}" alt="" width="">
+                                                                <img src="{{url('public/uploads/product')}}/{{$view->image}}" alt="" width="">
                                                             </div>
                                                             <div class="caption text-center" style="padding: 40px 15px; height: 160px">
-                                                                <h4>{{$mens->name}}</h4>
+                                                                <h4>{{$view->name}}</h4>
                                                                 <img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
-                                                                @if($mens->sale_price == 0)
+                                                                @if($view->sale_price == 0)
                                                                     <p style="margin-top: 15px;">
-                                                                        Price: {{number_format($mens->price)}} đ
+                                                                        Price: {{number_format($view->price)}} đ
                                                                     </p>
 
                                                                 
                                                                 @else
                                                                 <p  style="margin-top: 15px;">
-                                                                    <s class="pull-left">Price:{{number_format($mens->price)}} đ</s>
-                                                                    <span class="pull-right">Sale-Price: {{number_format($mens->sale_price)}} đ</span>
+                                                                    <s class="pull-left">Price:{{number_format($view->price)}} đ</s>
+                                                                    <span class="pull-right">Sale-Price: {{number_format($view->sale_price)}} đ</span>
                                                                 </p> 
 
                                                                 
@@ -235,10 +237,10 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href="{{route('pro_detail',['slug' => $mens->slug])}}"><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('pro_detail',['slug' => $view->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('cart.add',['id'=>$mens->id])}}" class="add_cart" data-id="{{$mens->id}}"><i class="fas fa-shopping-cart"></i></a>
+                                                                        <a href="{{route('cart.add',['id'=>$view->id])}}" class="add_cart" data-id="{{$view->id}}"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href=""><i class="far fa-heart"></i></a>
@@ -255,25 +257,25 @@
                                         <div role="tabpanel" class="tab-pane " id="trending">
                                             <div class="row">
                                                 <div class="pro-item">
-                                                     @foreach($women as $wo)
+                                                     @foreach($sale as $sl)
                                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="thumbnail my-pro">
                                                         <div class="pro-img">
-                                                                <img src="{{url('public/uploads/product')}}/{{$wo->image}}" alt="" width="">
+                                                                <img src="{{url('public/uploads/product')}}/{{$sl->image}}" alt="" width="">
                                                         </div>
                                                             <div class="caption text-center" style="padding: 40px 15px">
-                                                                <h4>{{$wo->name}}</h4>
+                                                                <h4>{{$sl->name}}</h4>
                                                                 <img src="{{url('public/home')}}/images/icons/icon-star.png" alt="">
-                                                                @if($wo->sale_price == 0)
+                                                                @if($sl->sale_price == 0)
                                                                     <p style="margin-top: 15px;">
-                                                                        Price: {{number_format($wo->price)}} đ
+                                                                        Price: {{number_format($sl->price)}} đ
                                                                     </p>
 
                                                                 
                                                                 @else
                                                                 <p  style="margin-top: 15px;">
-                                                                    <s class="pull-left">Price:{{number_format($wo->price)}} đ</s>
-                                                                    <span class="pull-right">Sale-Price: {{number_format($wo->sale_price)}} đ</span>
+                                                                    <s class="pull-left">Price:{{number_format($sl->price)}} đ</s>
+                                                                    <span class="pull-right">Sale-Price: {{number_format($sl->sale_price)}} đ</span>
                                                                 </p> 
 
                                                                 
@@ -284,10 +286,10 @@
                                                                 <div class="pro-effect-item">
                                                                     <ul>
                                                                         <li>
-                                                                        <a href="{{route('pro_detail',['slug' => $wo->slug])}}"><i class="fas fa-search"></i></a>
+                                                                        <a href="{{route('pro_detail',['slug' => $sl->slug])}}"><i class="fas fa-search"></i></a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('cart.add',['id'=>$wo->id])}}" class="add_cart" data-id="{{$wo->id}}"><i class="fas fa-shopping-cart"></i></a>
+                                                                        <a href="{{route('cart.add',['id'=>$sl->id])}}" class="add_cart" data-id="{{$sl->id}}"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a href=""><i class="far fa-heart"></i></a>
@@ -368,7 +370,7 @@
                 <div class="row">
                     <div class="blog-news text-center">
                         <h1>BLOG & NEWS</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>Fashion is more than price, style is more than fame, and acceptance is more than popularity. #HnacouQ is wear individuality meets commonality.</p>
                         <div class="row">
                             <div class="blog-new-item">
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -376,7 +378,7 @@
                                         <img src="{{url('public/home')}}/images/Blog/blog.png" alt="">
                                     </a>
                                     <p class="color-gray">january 19,2020 by <span class="color-black">admin</span></p>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Evelit</h4>
+                                    <h4>All the fashion influencers giving us WFH outfit inspiration right now</h4>
                                 </div>
 
                             </div>
@@ -386,7 +388,7 @@
                                         <img src="{{url('public/home')}}/images/Blog/blog2.png" alt="">
                                     </a>
                                     <p class="color-gray">january 19,2020 by <span class="color-black">admin</span></p>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Evelit</h4>
+                                    <h4>Are you looking to start a fashion blog, but don’t know where to start?</h4>
                                 </div>
 
                             </div>
@@ -396,7 +398,7 @@
                                         <img src="{{url('public/home')}}/images/Blog/blog3.png" alt="">
                                     </a>
                                     <p class="color-gray">january 19,2020 by <span class="color-black">admin</span></p>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Evelit</h4>
+                                    <h4>What are the Best Fashion Blogs You Should Follow?</h4>
                                 </div>
 
                             </div>

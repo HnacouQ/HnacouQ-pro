@@ -55,7 +55,7 @@
 										<ul class="dropdown-menu" >
 											
 											<li><a href="" style="text-transform: capitalize">Profile</a></li>
-											<li><a href="{{route('my_order',Auth::guard('cus')->user()->id)}}" style="text-transform: capitalize">My order</a></li>
+											<li><a href="{{route('my_order',Crypt::encrypt(Auth::guard('cus')->user()->id))}}" style="text-transform: capitalize">My order</a></li>
 
 											<li><a href="{{route('home_logout')}}" style="text-transform: capitalize">Log out</a></li>
 										</ul>
@@ -161,7 +161,7 @@
 					<div class="col-md-5">
 						<h3>Subscribe  Out Newsletter</h3>
 						<div class="new-letter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam tempore, ipsa nemo rerum nihil consequatur, expedita dolorem ab cum dolores rem voluptatem ullam! Voluptatibus quaerat expedita, aliquam cupiditate! Cupiditate, nesciunt.</p>
+							<p>We value and respect your privacy. Please read our Privacy Statement, which states our firm commitment to your privacy. Your email address will not be sold or used for purposes other than subscription for the newsletter.</p>
 							<form action="" method="POST" class="form-inline" role="form">
 								<div class="form-group">
 									<input type="email" class="form-control footer-input" id="" placeholder="Your email Adress">
@@ -202,6 +202,7 @@
 	<script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/toastr.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
+	
 	<script type="text/javascript">
 
 
@@ -228,6 +229,16 @@
 		    }
 
 		});
+
+		toastr.options = 
+      	{
+          newestOnTop      : true,
+          closeButton      : false,
+          progressBar      : true,
+          preventDuplicates: false,
+          showMethod       : 'slideDown',
+          timeOut          : 3000, //default timeout,
+      	};
 		
 	</script>
 </body>

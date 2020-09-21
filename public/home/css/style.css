@@ -875,6 +875,11 @@
 	padding: 10px 20px;
 }
 
+.pro-side-bar{
+	margin-top: 30px;
+	border: 1px solid #ccc;
+}
+
 .left-side-bar-top{
 	border: 1px solid #ccc;
 	padding-bottom: 40px;

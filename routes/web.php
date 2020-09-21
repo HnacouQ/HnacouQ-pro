@@ -69,7 +69,7 @@ Route::group(['prefix'=> 'admin','namespace' => 'admin','middleware'=> 'auth'],f
 
 	Route::get('order_detail/{id}','AdminController@order_detail')->name('order_detail');
 
-	Route::get('list_order-{id}','AdminController@update_order')->name('update_order');
+	Route::get('update_order','AdminController@update_order')->name('update_order');
 
 	Route::resource('category','CategoryController');
 
