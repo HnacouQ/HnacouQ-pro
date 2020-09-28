@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{url('public/ad')}}/css/style.css" />
   <script src="{{url('public/ad')}}/js/angular.min.js"></script>
   <script src="{{url('public/ad')}}/js/app.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script type="text/javascript">
     function base_url(){
       return "{{url('')}}";
@@ -270,6 +271,7 @@
 <script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/toastr.min.js"></script>
 <script src="{{url('public/ad')}}/js/function.js"></script>
 <script type="text/javascript" src="{{url('public/home')}}/flug-in/bs3/js/myJs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
    @yield('js')
 <script type="text/javascript">
   toastr.options = 
@@ -281,6 +283,10 @@
           showMethod       : 'slideDown',
           timeOut          : 3000, //default timeout,
         };
+
+  $(document).ready(function() {
+    $('#summernote').summernote();
+  });
 </script>
 </body>
 </html>

@@ -19,8 +19,14 @@ class AdminController extends Controller
      public function index()
     {
 
+        $current = date('Y-m-d');
 
-        $or_news = Order::orderBy('created_at','DESC')->limit(5)->get();
+        // đơn hàng hôm nay
+        $or_news = Order::where('created_at','like','%'.$current.'%')->get();
+        
+
+        // đơn hàng mới nhất
+        // $or_news = Order::orderBy('created_at','DESC')->limit(5)->get();
 
         // dd($total_order);
         return view('admin.index' , compact('or_news'));

@@ -33,7 +33,7 @@ class HomeController extends Controller
     	$views = Product::orderBy('views','DESC')->limit(8)->get();
     	$sale = Product::where('sale_price','>', 0)->orderBy('sale_price','ASC')->limit(8)->get();
     	$asso = Product::where('category_id',3)->get();
-        $banner = Banner::where('type',1)->get();
+      $banner = Banner::where('type',1)->get();
 
     	// dd($banner);
         return view('home.home', compact('all','views','sale','asso','banner'));
@@ -127,12 +127,13 @@ class HomeController extends Controller
       // dd($prod);
 
       //sản phẩm tương tự....
-      $related_pro = Product::where('category_id',$prod->category_id)->whereNotIn('slug',[$slug])->limit(3)->get();
+      
 
       // dd($related_pro);
       //lấy bình luận của sản phẩm
       $comment = Comment::where('com_slug',$slug)->get();
       if ($prod) {
+        $related_pro = Product::where('category_id',$prod->category_id)->whereNotIn('slug',[$slug])->limit(3)->get();
         //lấy số view hiện tại của sản phẩm
         $view = $prod->views;
         //truy vấn + thêm 1 view cho sản phẩm khi người dùng bấm vào xem sp
@@ -155,12 +156,13 @@ class HomeController extends Controller
         return view('home.search_pro',compact('product','count_pro'));
     }
 
-    public function my_order($id){
+    public function my_order(){
 
-      $data = Crypt::decrypt($id);
-      dd($data);
+      // $data = Crypt::decrypt($id);
+      $id = Auth::guard('cus')->user()->id;
+      // dd(Auth::guard('cus')->user()->id);
 
-      $my_or = Order::where('customer_id',$data)->orderBy('created_at','desc')->paginate(5);
+      $my_or = Order::where('customer_id',$id)->orderBy('created_at','desc')->paginate(5);
 
       if($my_or){
          return view('home.my_order',compact('my_or'));
@@ -172,6 +174,17 @@ class HomeController extends Controller
     }
 
     public function home_or_detail($id){
+
+
+      //xử lý ajax
+
+      // $order_id = $request->order_id;
+      // $data = Order::where('id',$order_id)->get();
+
+      // // $output = '<h1>'.$data->name.'</h1>';
+      // return response()->json(['dulieu' => $data]);
+
+
       $ord = Order::find($id);
 
       if($ord){
@@ -256,6 +269,17 @@ class HomeController extends Controller
         $mess->to('quocanh2298@gmail.com','php');
         $mess->subject('Thư test gửi mail');
       });
+    }
+
+    public function update_profile(){
+      $data = Customer::find(Auth::guard('cus')->user()->id);
+        if($data){
+            $update = $data->update($req->all());
+
+            return response()->json($update);
+        }else{
+            return ['message' => 'Lỗi'];
+        }
     }
 
 

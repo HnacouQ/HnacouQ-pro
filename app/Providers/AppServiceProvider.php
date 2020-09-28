@@ -11,6 +11,7 @@ use App\models\Customer;
 use App\User;
 use App\models\Category;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Validator::extend('phone_number', function($attribute, $value, $parameters)
+            {
+                return substr($value, 0, 2) == '09' || substr($value, 0, 2)=='03';
+            });
 
         Schema::defaultStringLength(191);
 

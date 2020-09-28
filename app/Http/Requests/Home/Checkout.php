@@ -4,6 +4,7 @@ namespace App\Http\Requests\Home;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class Checkout extends FormRequest
 {
     /**
@@ -25,9 +26,16 @@ class Checkout extends FormRequest
     {
         return [
             'name' => 'required|min:6|max:20',
-            'phone' => 'required|min:10|numeric',
+            'phone' => 'required|min:10|numeric|phone_number',
             'email' => 'required|email',
             'address' => 'required',
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'phone.phone_number' => 'You entered the wrong format phone number!!'
 
         ];
     }

@@ -99,13 +99,15 @@ Route::get('testmail','HomeController@test_mail');
 
 Route::get('register','HomeController@register')->name('register');
 
-Route::get('/don-hang/{id}','HomeController@my_order')->name('my_order');
+Route::get('my-order','HomeController@my_order')->name('my_order');
 
 Route::get('/del_order/{id}','HomeController@del_order')->name('del_order');
 
-Route::get('/chi-tiet-san-pham/{id}','HomeController@home_or_detail')->name('home_or_detail');
+Route::get('home_order_detail/{id}','HomeController@home_or_detail')->name('home_or_detail');
 
 Route::post('register','HomeController@post_register')->name('register');
+
+route::post('update-profile','HomeController@update_profile')->name('update_profile');
 
 
 

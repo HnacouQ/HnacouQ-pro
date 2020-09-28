@@ -24,7 +24,7 @@
 			
 			<div class="form-group">
 				<label for="">Description</label>
-				<textarea name="content" id="input" class="form-control" rows="3">{{old('content')}}</textarea>
+				<textarea name="content" id="summernote" class="form-control" rows="3">{{old('content')}}</textarea>
 				@error('content')
 				<small class="help-block" style="color:red">{{$message}}</small>
 				@enderror
